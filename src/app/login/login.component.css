@@ -1,25 +1,29 @@
 .ui-card-shadow {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #1c1c1e;
-    border-radius: 12px;
-    padding: 2rem; /* Añadido padding para espacio interno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añadido sombra para mejor visibilidad */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .input-group-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    padding: 2rem; /* Reducido padding para mejor ajuste */
-    border-radius: 10px;
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.transparent-button {
+  background-color: transparent !important;
+  border: none !important;
 }

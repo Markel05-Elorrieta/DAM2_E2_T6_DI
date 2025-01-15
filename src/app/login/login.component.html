@@ -1,31 +1,58 @@
 <p-card class="p-4 rounded-lg" class="ui-card-shadow">
-    <div class="flex justify-content-center">
-        <div class="input-group-container">
-            <h2 class="text-center text-white mb-4">Sign in to your account</h2>
-            <p-inputgroup class="mb-3">
-                <p-inputgroup-addon>
-                    <i class="pi pi-envelope text-white"></i>
-                </p-inputgroup-addon>
-                <p-floatlabel>
-                    <input pInputText id="email" autocomplete="off" class="p-inputtext-lg" />
-                    <label for="email" class="text-white">Email</label>
-                </p-floatlabel>
-            </p-inputgroup>
-            <p-inputgroup>
-                <p-inputgroup-addon>
-                    <i class="pi pi-lock text-white"></i>
-                </p-inputgroup-addon>
-                <p-floatlabel>
-                    <input pInputText id="password" type="password" autocomplete="off" class="p-inputtext-lg" />
-                    <label for="password" class="text-white">Password</label>
-                </p-floatlabel>
-                <p-inputgroup-addon>
-                    <i class="pi pi-eye-slash text-white"></i>
-                </p-inputgroup-addon>
-            </p-inputgroup>
-            <div class="flex justify-content-center mt-5">
-                <p-button label="Sign in" class="p-button-rounded p-button-primary p-button-lg w-full" />
-            </div>
-        </div>
+  <div class="flex flex-col md:flex-row">
+    <div class="input-group-container">
+      <h2 class="text-center text-lg text-white mb-4">{{ 'login.signInToYourAccount' | translate }}</h2>
+      <p-inputgroup class="mb-8 mt-5">
+        <p-inputgroup-addon>
+          <i class="pi pi-envelope text-white"></i>
+        </p-inputgroup-addon>
+        <p-floatlabel>
+          <input
+            pInputText
+            id="email"
+            [(ngModel)]="email"
+            autocomplete="off"
+            class="p-inputtext-lg"
+          />
+          <label for="email" class="text-white">{{ 'login.email' | translate }}</label>
+        </p-floatlabel>
+      </p-inputgroup>
+      <p-inputgroup class="mb-5">
+        <p-inputgroup-addon>
+          <i class="pi pi-lock text-white"></i>
+        </p-inputgroup-addon>
+        <p-floatlabel>
+          <input
+            pInputText
+            id="password"
+            [(ngModel)]="password"
+            type="password"
+            autocomplete="off"
+            class="p-inputtext-lg"
+          />
+          <label for="password" class="text-white">{{ 'login.password' | translate }}</label>
+        </p-floatlabel>
+        <p-inputgroup-addon>
+          <p-button
+            type="button"
+            severity="secondary"
+            class="h-full"
+            [icon]="passwordVisible ? 'pi pi-eye-slash' : 'pi pi-eye'"
+            (click)="togglePasswordVisibility()"
+            [disabled]="!password"
+            [pTooltip]="'login.togglePasswordVisibility' | translate"
+          >
+          </p-button>
+        </p-inputgroup-addon>
+      </p-inputgroup>
+      <div class="flex justify-content-center mt-5">
+        <p-button
+          type="submit"
+          (onClick)="login()"
+          [label]="'login.loginButton' | translate"
+          class="p-button-rounded p-button-primary p-button-lg w-full"
+        />
+      </div>
     </div>
+  </div>
 </p-card>

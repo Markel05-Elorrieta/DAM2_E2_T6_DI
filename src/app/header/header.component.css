@@ -1,0 +1,26 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 10px;
+    border-bottom: 1px solid #474747;
+}
+
+.user-language-container {
+    display: flex;
+    align-items: center;
+}
+
+.language-toggle {
+    margin-left: 10px;
+}
+
+.user-button {
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}

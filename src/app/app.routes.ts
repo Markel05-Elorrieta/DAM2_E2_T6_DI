@@ -4,18 +4,18 @@ import { HomeIkasleComponent } from './ikasleak/home-ikasle/home-ikasle.componen
 
 export const routes: Routes = [
     {
-        title: 'Login',
+        title: 'Login - JEM SchoolsApp',
         path: 'login',
         component: LoginComponent
     },
     {
         path: 'ikasleak',
-        title: 'Home - Ikasleak',
+        title: 'Home - Ikasleak - JEM SchoolsApp',
         redirectTo: 'ikasleak/home',
     },
     {
         path: 'irakasleak',
-        title: 'Home - Irakasleak',
+        title: 'Home - Irakasleak - JEM SchoolsApp',
         redirectTo: 'irakasleak/home',
     },
     {
@@ -23,7 +23,7 @@ export const routes: Routes = [
         title: 'Ikasleak',
         children: [
             {
-                title: 'Home - Ikasleak',
+                title: 'Home - Ikasleak - JEM SchoolsApp', 
                 path: 'home',
                 component: HomeIkasleComponent
             },
