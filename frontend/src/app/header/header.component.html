@@ -1,0 +1,37 @@
+<header>
+  <div class="logo-container ml-2">
+    <a routerLink="/login"
+      ><img
+        src="elorrieta.png"
+        class="logo-elorrieta"
+        width="200"
+        height="200"
+        alt="JEM Logo"
+    /></a>
+  </div>
+
+  <div class="user-language-container">
+    <div class="language-toggle">
+      <p-select
+        id="language"
+        [options]="languages"
+        [(ngModel)]="selectedLanguage"
+        optionLabel="name"
+        optionValue="code"
+        (onChange)="translateText($event)"
+      >
+        <ng-template #dropdownicon>
+          <i class="pi pi-globe"></i>
+        </ng-template>
+      </p-select>
+    </div>
+    @if (isLoggedIn()) {
+    <div class="user-menu">
+      <p-menu #menu [model]="items" [popup]="true"  />
+      <button (click)="menu.toggle($event)">
+        <img src="oihan.jpg" alt="User Photo" />
+      </button>
+    </div>
+    }
+  </div> 
+</header>

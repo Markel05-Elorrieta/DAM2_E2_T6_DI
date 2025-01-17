@@ -1,0 +1,104 @@
+<div class="mr-5 ml-5 mt-2">
+    <p-card>
+        <h1 class="text-3xl">Dashboard Irakasle</h1>
+    </p-card>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    <!-- User Data Section -->
+    <div class="col-span-1">
+      <p-card header="Irakaslearen datuak" class="shadow-lg rounded-lg">
+        <div class="flex items-center p-6">
+          <img
+            src="oihan.jpg"
+            alt="User Photo"
+            class="rounded-full w-24 h-24 shadow-md mr-4"
+          />
+          <div>
+            <p class="font-bold text-lg">Izena: {{ user.name }}</p>
+            <p class="text-gray-400">E-mail: {{ user.email }}</p>
+            <!-- Add more user data as needed -->
+          </div>
+        </div>
+      </p-card>
+    </div>
+  
+    <!-- Schedule Section -->
+    <div class="col-span-1">
+      <p-card header="Ordutegia" class="shadow-lg rounded-lg">
+        <p-table [value]="schedule" class="p-datatable-gridlines">
+          <ng-template pTemplate="header">
+            <tr class="bg-gray-50">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Day</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activity</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-scheduleItem>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ scheduleItem.day }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ scheduleItem.time }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ scheduleItem.activity }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-card>
+    </div>
+  
+    <!-- Meetings Section -->
+    <div class="col-span-1 md:col-span-2 lg:col-span-3">
+      <p-card header="Bilerak" class="shadow-lg rounded-lg">
+        <p-listbox [options]="meetings" optionLabel="title" class="p-listbox-striped">
+          <ng-template let-meeting pTemplate="item">
+            <div class="flex justify-between items-center p-4 border-b border-gray-200">
+              <div>
+                <p class="font-bold text-lg">{{ meeting.title }}</p>
+                <p class="text-gray-600">{{ meeting.details }}</p>
+                <a [routerLink]="['/meeting', meeting.id]" class="text-blue-500">Xehetasunak ikusi</a>
+              </div>
+              <div class="text-right">
+                <p class="text-gray-500">{{ meeting.date }}</p>
+                <p class="text-gray-500">{{ meeting.time }}</p>
+              </div>
+            </div>
+          </ng-template>
+        </p-listbox>
+      </p-card>
+    </div>
+
+    <!-- Student Search Section -->
+    <div class="col-span-1 md:col-span-2 lg:col-span-3">
+      <p-card header="Ikasleak bilatu" class="shadow-lg rounded-lg">
+        <div class="p-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Bilatu NAN, izen-abizen edo zikloaren arabera..."
+            
+          />
+          <button class="btn btn-primary mt-2" (click)="searchStudents()">Bilatu</button>
+        </div>
+        <div *ngIf="filteredStudents.length > 0" class="p-6">
+          <p-table [value]="filteredStudents" class="p-datatable-gridlines">
+            <ng-template pTemplate="header">
+              <tr class="bg-gray-50">
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAN</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Izen-abizen</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Zikloa</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Xehetasunak</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-student>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">{{ student.nan }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ student.name }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ student.cycle }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <a [routerLink]="['/student', student.id]" class="text-blue-500">Xehetasunak ikusi</a>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </p-card>
+    </div>
+  </div>

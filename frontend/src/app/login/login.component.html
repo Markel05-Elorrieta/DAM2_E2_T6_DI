@@ -1,0 +1,67 @@
+<div class="min-h-screen flex items-center justify-center custom-background">
+  <p-card class="w-full max-w-md">
+    <div class="p-card-header text-center">
+      <h2 class="mb-4 text-2xl font-semibold text-white-700">{{ 'login.signInToYourAccount' | translate }}</h2>
+    </div>
+    <div class="p-card-body">
+      <form (submit)="login()" class="space-y-10 p-9">
+        <!-- Email Input -->
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-envelope"></i>
+          </p-inputgroup-addon>
+          <p-floatlabel>
+            <input
+              pInputText
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              autocomplete="off"
+              class="p-inputtext-lg w-full"
+            />
+            <label for="email">{{ 'login.email' | translate }}</label>
+          </p-floatlabel>
+        </p-inputgroup>
+        <!-- Password Input -->
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-lock"></i>
+          </p-inputgroup-addon>
+          <p-floatlabel>
+            <input
+              pInputText
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              [type]="passwordVisible ? 'text' : 'password'"
+              autocomplete="off"
+              class="p-inputtext-lg w-full"
+            />
+            <label for="password">{{ 'login.password' | translate }}</label>
+          </p-floatlabel>
+          <p-inputgroup-addon>
+            <button
+              pButton
+              type="button"
+              [icon]="passwordVisible ? 'pi pi-eye-slash' : 'pi pi-eye'"
+              (click)="togglePasswordVisibility()"
+              class="p-button-secondary"
+              [disabled]="!password"
+              [pTooltip]="'login.togglePasswordVisibility' | translate"
+            ></button>
+          </p-inputgroup-addon>
+        </p-inputgroup>
+        <!-- Login Button -->
+        <div>
+          <button
+            pButton
+            type="submit"
+            label="{{ 'login.loginButton' | translate }}"
+            class="p-button-rounded p-button-primary p-button-lg font-bold w-full"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </p-card>
+  <p-toast position="bottom-right" />
+</div>

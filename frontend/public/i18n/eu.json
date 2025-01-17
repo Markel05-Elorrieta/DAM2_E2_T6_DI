@@ -1,0 +1,10 @@
+{
+    "login": {
+      "signInToYourAccount": "Hasi saioa zure kontuan",
+      "email": "E-posta",
+      "password": "Pasahitza",
+      "loginButton": "Saioa hasi",
+      "togglePasswordVisibility": "Pasahitza ikusi",
+      "fillAllFields": "Bete eremu guztiak"
+    }
+  }
