@@ -6,12 +6,12 @@ import { ListboxModule } from 'primeng/listbox';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/IUser';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
-import { IHorarios } from '../../interfaces/IHorarios';
+import { IOrdutegia } from '../../interfaces/IOrdutegia';
 
 @Component({
   selector: 'app-home-ikasle',
   standalone: true,
-  imports: [ CommonModule, CardModule, TableModule, ListboxModule ],
+  imports: [ CardModule, TableModule, ListboxModule, CommonModule ],
   templateUrl: './home-ikasle.component.html',
   styleUrl: './home-ikasle.component.css'
 })
@@ -27,11 +27,7 @@ export class HomeIkasleComponent {
 
   user: IUser | undefined;
 
-  schedule = [
-    { day: 'Monday', time: '08:00 - 10:00', activity: 'Math' },
-    { day: 'Tuesday', time: '10:00 - 12:00', activity: 'Science' },
-    // Add more schedule items as needed
-  ];
+  schedule: IOrdutegia[] = [];
 
   meetings = [
     { title: 'Project Meeting', details: 'Discuss project requirements', date: new Date(), time: '14:00' },
@@ -46,8 +42,9 @@ export class HomeIkasleComponent {
   getTimetableIkasle() {
     if (this.user) {
       this.hezkuntzaService.getIkasleOrdutegia(this.user.id).subscribe(
-        (response: IHorarios) => {
-          console.log(response);
+        (response: IOrdutegia) => {
+          this.schedule.push(response);
+          console.log(this.schedule);
         }
       );
     }

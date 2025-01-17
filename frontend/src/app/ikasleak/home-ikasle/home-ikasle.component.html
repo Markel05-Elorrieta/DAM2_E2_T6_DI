@@ -27,31 +27,17 @@
     <p-card header="Ordutegia" class="shadow-lg rounded-lg">
       <p-table [value]="schedule" showGridlines>
         <ng-template pTemplate="header">
-          <tr class="bg-gray-50">
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Day
-            </th>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Time
-            </th>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Activity
+          <tr>
+            <th *ngFor="let scheduleItem of schedule">
+              {{ scheduleItem.dia }}
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-scheduleItem>
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap">{{ scheduleItem.day }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ scheduleItem.time }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              {{ scheduleItem.activity }}
-            </td>
+        <ng-template pTemplate="body" let-horario>
+          <tr *ngFor="let horario of horario">
+            <td>{{ horario.Dia }}</td>
+            <td>{{ horario.Hora }}</td>
+            <td>{{ horario.Modulo }}</td>
           </tr>
         </ng-template>
       </p-table>
