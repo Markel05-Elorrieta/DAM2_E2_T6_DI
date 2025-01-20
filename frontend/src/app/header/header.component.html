@@ -1,16 +1,17 @@
-<header>
-  <div class="logo-container ml-2">
-    <a routerLink="/login"
-      ><img
+<header class="flex items-center justify-between p-4 bg-gray-100">
+  <div class="ml-2">
+    <a routerLink="/login">
+      <img
         src="elorrieta.png"
         class="logo-elorrieta"
         width="200"
         height="200"
         alt="JEM Logo"
-    /></a>
+      />
+    </a>
   </div>
 
-  <div class="user-language-container">
+  <div class="user-language-container flex items-center space-x-4">
     <div class="language-toggle">
       <p-select
         id="language"
@@ -26,12 +27,16 @@
       </p-select>
     </div>
     @if (isLoggedIn()) {
-    <div class="user-menu">
-      <p-menu #menu [model]="items" [popup]="true"  />
-      <button (click)="menu.toggle($event)">
-        <img src="oihan.jpg" alt="User Photo" />
+    <div class="user-menu flex items-center">
+      <p-menu #menu [model]="items" [popup]="true"></p-menu>
+      <button (click)="menu.toggle($event)" class="ml-2">
+        <img
+          [src]="getLoggedUser() | photosPipe"
+          alt="User Photo"
+          class="w-10 h-10 rounded-full"
+        />
       </button>
     </div>
     }
-  </div> 
+  </div>
 </header>

@@ -7,6 +7,7 @@ import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../services/auth.service';
+import { PhotosPipe } from '../pipes/photos.pipe';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ import { AuthService } from '../services/auth.service';
     TranslateModule,
     MenuModule,
     ButtonModule,
+    PhotosPipe,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -52,6 +54,8 @@ export class HeaderComponent {
         ],
       },
     ];
+
+    this.getLoggedUser();
   }
 
   getLoggedUser() {

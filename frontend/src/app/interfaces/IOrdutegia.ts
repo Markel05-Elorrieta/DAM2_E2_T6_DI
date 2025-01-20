@@ -1,5 +1,5 @@
 export interface IOrdutegia {
   dia:       string;
-  hora:      number;
+  hora:      string;
   modulo:    string;
 }

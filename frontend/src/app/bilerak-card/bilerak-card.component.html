@@ -1,0 +1,21 @@
+<div class="grid grid-cols-4 gap-4 ml-5">
+  <p-card header="PRUEBA" subheader="2020-00-22">
+    <ng-template pTemplate="content">
+      <p class="text-sm"><strong>Ubicación: </strong>Bilbao</p>
+      <p class="text-sm">
+        <strong>Descripción: </strong>
+        Una descripción de la reunión
+      </p>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        type="button"
+        label="Ver más"
+        icon="pi pi-info-circle"
+        class="text-xs"
+        routerLink="/meeting/:id"
+      ></button>
+    </ng-template>
+  </p-card>
+</div>

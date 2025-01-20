@@ -58,12 +58,13 @@ export class LoginComponent {
             this.authService.saveUser(this._user);
             this.authService.getUserType(this._user.id).subscribe(
               (userTypeResponse: { userType: String }) => {
+                console.log(userTypeResponse);
                 if (userTypeResponse && userTypeResponse.userType === 'jainkoa') {
                   this.router.navigate(['/god']);
                 } else if (userTypeResponse && userTypeResponse.userType === 'ikaslea') {
-                  this.router.navigate(['/ikasleak']);
+                  this.router.navigate(['/students']);
                 } else if (userTypeResponse && userTypeResponse.userType === 'irakaslea') {
-                  this.router.navigate(['/irakasleak']);
+                  this.router.navigate(['/teachers']);
                 } else if (userTypeResponse && userTypeResponse.userType === 'administratzailea') {
                   this.router.navigate(['/admin']);
                 } else {

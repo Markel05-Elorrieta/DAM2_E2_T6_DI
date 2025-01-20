@@ -1,36 +1,37 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #2EBAC6, #3745A4);
-    padding: 10px;
-    border-bottom: 1px solid #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2ebac6, #3745a4);
+  padding: 10px;
+  border-bottom: 1px solid #ffffff;
 }
 
 .user-language-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo-elorrieta {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+
+.language-toggle p-select {
+  background-color: transparent;
+  border: 1px solid #d3d3d3;
 }
 
 .user-menu button {
-    margin-right: 15px;
-    margin-left: 25px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
-    border: 1px solid #464040;
+  margin-right: 18px;
+  margin-left: 25px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border: 1px solid #464040;
 }
 
 .user-menu button:hover {
-    border-color: #2ec661;
-    transition: all 0.3s;
+  border-color: rgb(114, 193, 221);
+  transition: all 0.3s;
 }
-
-.menu-open {
-    border-color: #2ec661;
-  }

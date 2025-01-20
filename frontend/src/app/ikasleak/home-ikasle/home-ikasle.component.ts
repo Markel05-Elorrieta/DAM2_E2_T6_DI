@@ -7,11 +7,14 @@ import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/IUser';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { IOrdutegia } from '../../interfaces/IOrdutegia';
+import { PhotosPipe } from "../../pipes/photos.pipe";
+import { BilerakCardComponent } from '../../bilerak-card/bilerak-card.component';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-home-ikasle',
   standalone: true,
-  imports: [ CardModule, TableModule, ListboxModule, CommonModule ],
+  imports: [CardModule, TableModule, ListboxModule, CommonModule, PhotosPipe, BilerakCardComponent, DividerModule],
   templateUrl: './home-ikasle.component.html',
   styleUrl: './home-ikasle.component.css'
 })
@@ -36,7 +39,9 @@ export class HomeIkasleComponent {
   ];
 
   getLoggedUser() {
-    this.user = this.authService.getUser();
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.user = user;
+    return user ? user.nombre : '';
   }
 
   getTimetableIkasle() {
@@ -44,7 +49,6 @@ export class HomeIkasleComponent {
       this.hezkuntzaService.getIkasleOrdutegia(this.user.id).subscribe(
         (response: IOrdutegia) => {
           this.schedule.push(response);
-          console.log(this.schedule);
         }
       );
     }

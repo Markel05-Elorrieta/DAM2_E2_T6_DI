@@ -1,22 +1,19 @@
-<div class="mr-5 ml-5 mt-2">
-  <p-card>
-    <h1 class="text-3xl">Dashboard Ikasle</h1>
-  </p-card>
+<div class="mr-5 ml-6 mt-4">
+  <h1 class="text-4xl font-bold text-center text-white">Ikaslearen espazioa</h1>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2 p-6">
   <!-- User Data Section -->
   <div class="col-span-1">
     <p-card header="Ikaslearen datuak" class="shadow-lg rounded-lg">
       <div class="flex items-center p-6">
         <img
-          src="oihan.jpg"
+          [src]="getLoggedUser() | photosPipe"
           alt="User Photo"
-          class="rounded-full w-24 h-24 shadow-md mr-4"
+          class="rounded-full w-24 h-24 shadow-md mr-6"
         />
         <div>
-          <p class="font-bold text-lg">Izena: {{ user?.nombre }}</p>
-          <p class="text-gray-400">E-mail: {{ user?.email }}</p>
-          <!-- Add more user data as needed -->
+          <p class="font-bold text-5xl mb-5">{{ user?.nombre }} {{ user?.apellidos }}</p>
+          <p class="text-gray-400 text-lg">E-mail: {{ user?.email }}</p>
         </div>
       </div>
     </p-card>
@@ -43,30 +40,12 @@
       </p-table>
     </p-card>
   </div>
-
-  <!-- Meetings Section -->
-  <div class="col-span-1 md:col-span-2 lg:col-span-3">
-    <p-card header="Bilerak" class="shadow-lg rounded-lg">
-      <p-listbox
-        [options]="meetings"
-        optionLabel="title"
-        class="p-listbox-striped"
-      >
-        <ng-template let-meeting pTemplate="item">
-          <div
-            class="flex justify-between items-center p-4 border-b border-gray-200"
-          >
-            <div>
-              <p class="font-bold text-lg">{{ meeting.title }}</p>
-              <p class="text-gray-600">{{ meeting.details }}</p>
-            </div>
-            <div class="text-right">
-              <p class="text-gray-500">{{ meeting.date | date }}</p>
-              <p class="text-gray-500">{{ meeting.time }}</p>
-            </div>
-          </div>
-        </ng-template>
-      </p-listbox>
-    </p-card>
-  </div>
 </div>
+
+<p-divider type="solid" />
+
+<div class="mt-6 ml-6 mb-5">
+  <h2 class="text-3xl font-semibold text-white">Bilerak</h2>
+</div>
+<!-- BILERAK -->
+<app-bilerak-card />

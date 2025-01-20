@@ -61,8 +61,8 @@ app.get("/user-type/:userId", (req, res) => {
 });
 
 app.get("/timetable-ikasle/:userId", (req, res) => {
-    const userId = req.params.userId;
-    const query = `SELECT 
+  const userId = req.params.userId;
+  const query = `SELECT 
     h.dia AS Dia,
     h.hora AS Hora,
     m.nombre AS Modulo
@@ -100,14 +100,34 @@ GROUP BY
 ORDER BY
     h.dia;
 `;
-    db.query(query, [userId, userId], (err, results) => {
-        if (err) {
-            console.error("Errorea datu-basera konektatzean:", err);
-            res.status(500).send("Errorea datu-basera konektatzean");
-            return;
-        }
-        res.send(results);
-    });
+  db.query(query, [userId, userId], (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results);
+  });
+});
+
+app.get("/timetable-irakasle/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const query = `select h.dia,
+       h.hora,
+       m.nombre as modulo
+from horarios as h
+join modulos m on m.id = h.modulo_id
+where profe_id = (select id from users as u
+                  where u.id = ?);`;
+
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results);
+  });
 });
 
 // Zerbitzaria hasieratu

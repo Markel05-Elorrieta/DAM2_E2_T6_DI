@@ -1,0 +1,4 @@
+footer a:hover {
+    color: rgb(114, 193, 221);
+    transition: all 0.3s;
+}
