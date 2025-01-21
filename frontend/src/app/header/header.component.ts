@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../services/auth.service';
 import { PhotosPipe } from '../pipes/photos.pipe';
 import { TooltipModule } from 'primeng/tooltip';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +24,8 @@ import { TooltipModule } from 'primeng/tooltip';
     ButtonModule,
     PhotosPipe,
     TooltipModule,
+    ToggleSwitchModule,
+    CommonModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -38,7 +42,7 @@ export class HeaderComponent {
     { name: 'ES', code: 'es' },
   ];
   selectedLanguage: string = 'eu';
-
+  checked: boolean = false;
   items: MenuItem[] | undefined;
 
   ngOnInit() {
@@ -58,6 +62,11 @@ export class HeaderComponent {
     ];
 
     this.getLoggedUser();
+  }
+
+  toggleDarkMode() {
+    const element = document.querySelector('html');
+    element?.classList.toggle('my-app-dark');
   }
 
   getLoggedUser() {
