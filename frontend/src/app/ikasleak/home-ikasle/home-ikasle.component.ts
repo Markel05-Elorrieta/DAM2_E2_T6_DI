@@ -26,11 +26,17 @@ export class HomeIkasleComponent {
   ngOnInit() {
     this.getLoggedUser();
     this.getTimetableIkasle();
+    this.setSchedulesByTime();
+    //console.log(this.auxSchedule);
+    //console.log(this.schedule);
+
+
   }
 
   user: IUser | undefined;
 
-  schedule: IOrdutegia[] = [];
+  schedule: IOrdutegia[][] = [];
+  auxSchedule: IOrdutegia[] = [];
 
   meetings = [
     { title: 'Project Meeting', details: 'Discuss project requirements', date: new Date(), time: '14:00' },
@@ -48,9 +54,22 @@ export class HomeIkasleComponent {
     if (this.user) {
       this.hezkuntzaService.getIkasleOrdutegia(this.user.id).subscribe(
         (response: IOrdutegia) => {
-          this.schedule.push(response);
+          this.auxSchedule.push(response);
         }
       );
+    }
+  }
+
+  setSchedulesByTime(){
+    for (let i = 1; i <= 5; i++) {
+      // Use filter to get all matching schedules for the current hour
+      const matchingSchedules = this.auxSchedule.filter(auxSchedule => auxSchedule.hora == i.toString());
+      console.log(this.auxSchedule);
+      console.log(matchingSchedules);
+      // Push each matching schedule into the corresponding schedule array
+      if (matchingSchedules.length > 0) {
+        this.schedule[i - 1].push(...matchingSchedules); // Spread operator to add all matching schedules
+      }
     }
   }
 }

@@ -22,15 +22,38 @@
   <!-- Schedule Section -->
   <div class="col-span-1">
     <p-card header="Ordutegia" class="shadow-lg rounded-lg">
-      <p-table [value]="schedule" showGridlines>
+      <p-table [value]="auxSchedule" showGridlines>
         <ng-template pTemplate="header">
           <tr>
-            <th *ngFor="let scheduleItem of schedule">
-              {{ scheduleItem.dia }}
-            </th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-horario>
+          <tr *ngFor="let horario of horario">
+            
+            <td>{{ horario.Dia }}</td>
+            <td>{{ horario.Hora }}</td>
+            <td>{{ horario.Modulo }}</td>
+          </tr>
+          <tr *ngFor="let horario of horario">
+            <td>{{ horario.Dia }}</td>
+            <td>{{ horario.Hora }}</td>
+            <td>{{ horario.Modulo }}</td>
+          </tr>
+          <tr *ngFor="let horario of horario">
+            <td>{{ horario.Dia }}</td>
+            <td>{{ horario.Hora }}</td>
+            <td>{{ horario.Modulo }}</td>
+          </tr>
+          <tr *ngFor="let horario of horario">
+            <td>{{ horario.Dia }}</td>
+            <td>{{ horario.Hora }}</td>
+            <td>{{ horario.Modulo }}</td>
+          </tr>
           <tr *ngFor="let horario of horario">
             <td>{{ horario.Dia }}</td>
             <td>{{ horario.Hora }}</td>
