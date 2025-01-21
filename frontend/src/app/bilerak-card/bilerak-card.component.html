@@ -1,10 +1,13 @@
 <div class="grid grid-cols-4 gap-4 ml-5">
-  <p-card header="PRUEBA" subheader="2020-00-22">
+  <p-card header="{{ bilera.titulo }}" subheader="{{ bilera.fecha }}">
     <ng-template pTemplate="content">
-      <p class="text-sm"><strong>Ubicación: </strong>Bilbao</p>
       <p class="text-sm">
-        <strong>Descripción: </strong>
-        Una descripción de la reunión
+        <strong>Asunto: </strong>
+        {{ bilera.asunto }}
+      </p>
+      <p>
+        <strong>Aula: </strong>
+        {{ bilera.aula }}
       </p>
     </ng-template>
     <ng-template pTemplate="footer">
@@ -14,7 +17,7 @@
         label="Ver más"
         icon="pi pi-info-circle"
         class="text-xs"
-        routerLink="/meeting/:id"
+        routerLink="/students/meetings/:id"
       ></button>
     </ng-template>
   </p-card>

@@ -8,6 +8,7 @@ import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../services/auth.service';
 import { PhotosPipe } from '../pipes/photos.pipe';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ import { PhotosPipe } from '../pipes/photos.pipe';
     MenuModule,
     ButtonModule,
     PhotosPipe,
+    TooltipModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

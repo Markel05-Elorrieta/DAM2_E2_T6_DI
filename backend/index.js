@@ -130,8 +130,21 @@ where profe_id = (select id from users as u
   });
 });
 
+app.get("/meetings/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const query = ` `;
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results);
+  });
+});
+
 // Zerbitzaria hasieratu
-const PORT = 3000;
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Zerbitzaria http://localhost:${PORT}-n martxan dago`);
 });

@@ -1,12 +1,10 @@
 export interface IReuniones {
-  id_reunion:  number;
-  estado:      string;
-  estado_eus:  null;
-  profesor_id: number;
-  alumno_id:   number;
-  id_centro:   string;
-  titulo:      string;
-  asunto:      string;
-  aula:        string;
-  fecha:       Date;
+  estado: string;
+  nombre_profesor: string;
+  apellidos_profesor: string;
+  id_centro: string;
+  titulo: string;
+  asunto: string;
+  aula: string;
+  fecha: Date;
 }
