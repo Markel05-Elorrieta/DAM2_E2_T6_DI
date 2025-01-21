@@ -12,7 +12,20 @@
   </div>
 
   <div class="user-language-container flex items-center space-x-4">
-    <div class="language-toggle" pTooltip="Aldatu hizkuntza" tooltipPosition="left">
+    <div class="mr-4">
+      <p-toggleswitch class="p-toggleswitch align-middle" [(ngModel)]="checked" (onChange)="toggleDarkMode()">
+        <ng-template #handle let-checked="checked">
+          <i
+            [ngClass]="['!text-xs', 'pi', checked ? 'pi-moon' : 'pi-sun']"
+          ></i>
+        </ng-template>
+      </p-toggleswitch>
+    </div>
+    <div
+      class="language-toggle"
+      pTooltip="Aldatu hizkuntza"
+      tooltipPosition="left"
+    >
       <p-select
         id="language"
         [options]="languages"

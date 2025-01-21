@@ -1,8 +1,8 @@
-<div class="mr-5 ml-6 mt-4">
-  <h1 class="text-4xl font-bold text-center text-white">
-    Irakaslearen espazioa
-  </h1>
-</div>
+<p-card class="shadow-lg rounded-lg">
+  <div class="mr-5 ml-6 mt-4">
+    <h1 class="text-4xl font-bold text-center">Irakaslearen espazioa</h1>
+  </div>
+</p-card>
 
 <!-- First Row: User Data and Schedule -->
 <div class="grid grid-cols-2 gap-4 p-6">
@@ -16,7 +16,9 @@
           class="rounded-full w-24 h-24 shadow-md mr-6"
         />
         <div>
-          <p class="font-bold text-5xl mb-5">{{ user?.nombre }} {{ user?.apellidos }}</p>
+          <p class="font-bold text-5xl mb-5">
+            {{ user?.nombre }} {{ user?.apellidos }}
+          </p>
           <p class="text-gray-400 text-lg">E-mail: {{ user?.email }}</p>
         </div>
       </div>
@@ -28,8 +30,8 @@
     <p-card header="Ordutegia" class="shadow-lg rounded-lg">
       <p-table showGridlines>
         <ng-template pTemplate="header">
-          <tr>            
-              <th>{{ schedule?.dia }}</th>
+          <tr>
+            <th>{{ schedule?.dia }}</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-schedule>
