@@ -6,7 +6,7 @@ import { IReuniones } from '../interfaces/IReuniones';
 @Component({
   selector: 'app-bilerak-card',
   standalone: true,
-  imports: [CardModule, RouterLink],
+  imports: [CardModule],
   templateUrl: './bilerak-card.component.html',
   styleUrl: './bilerak-card.component.css'
 })

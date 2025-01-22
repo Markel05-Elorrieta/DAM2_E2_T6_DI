@@ -49,3 +49,4 @@ export const appConfig: ApplicationConfig = {
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
 }
+

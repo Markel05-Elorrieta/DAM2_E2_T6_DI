@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
 import { ListboxModule } from 'primeng/listbox';
 import { RouterLink } from '@angular/router';
@@ -23,6 +24,7 @@ import { IOrdutegia } from '../../interfaces/IOrdutegia';
     DividerModule,
     BilerakCardComponent,
     PhotosPipe,
+    PanelModule,
   ],
   templateUrl: './home-irakasle.component.html',
   styleUrl: './home-irakasle.component.css',

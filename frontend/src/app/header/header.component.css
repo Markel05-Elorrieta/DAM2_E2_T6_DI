@@ -16,11 +16,6 @@ header {
   filter: brightness(0) invert(1);
 }
 
-.language-toggle p-select {
-  background-color: transparent;
-  border: 1px solid #d3d3d3;
-}
-
 .user-menu button {
   margin-right: 18px;
   margin-left: 20px;

@@ -62,11 +62,33 @@ export class HeaderComponent {
     ];
 
     this.getLoggedUser();
+
+    this.checked = this.getDarkModePreference();
+    this.applyDarkMode(this.checked);
   }
 
   toggleDarkMode() {
+    this.applyDarkMode(this.checked);
+    this.saveDarkModePreference();
+  }
+
+  applyDarkMode(enable: boolean) {
     const element = document.querySelector('html');
-    element?.classList.toggle('my-app-dark');
+    if (element) {
+      if (enable) {
+        element.classList.add('my-app-dark');
+      } else {
+        element.classList.remove('my-app-dark');
+      }
+    }
+  }
+
+  saveDarkModePreference() {
+    localStorage.setItem('darkMode', this.checked.toString());
+  }
+
+  getDarkModePreference() {
+    return localStorage.getItem('darkMode') === 'true';
   }
 
   getLoggedUser() {
