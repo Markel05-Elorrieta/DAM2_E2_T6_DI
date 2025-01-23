@@ -11,6 +11,7 @@ import { IUser } from '../../interfaces/IUser';
 import { PhotosPipe } from '../../pipes/photos.pipe';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { IOrdutegia } from '../../interfaces/IOrdutegia';
+import { IReuniones } from '../../interfaces/IReuniones';
 
 @Component({
   selector: 'app-home-irakasle',
@@ -37,12 +38,15 @@ export class HomeIrakasleComponent {
   user: IUser | undefined;
   schedule: any[][] = [];
   auxSchedule: IOrdutegia[] = [];
+  bilerak: IReuniones[] = [];
 
   constructor(private hezkuntzaService: HezkuntzaService) {}
 
   ngOnInit() {
     this.getLoggedUser();
     this.getTimetableIrakasle();
+    this.setSchedulesByTime();
+    this.getIrakasleBilerak();
   }
 
   getLoggedUser() {
@@ -60,6 +64,17 @@ export class HomeIrakasleComponent {
           this.auxSchedule.push(response);
           console.log(this.auxSchedule);
         });
+    }
+  }
+
+  getIrakasleBilerak() {
+    if (this.user) {
+      this.hezkuntzaService.getIrakasleBilerak(this.user.id).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.bilerak = response;
+        }
+      );
     }
   }
 

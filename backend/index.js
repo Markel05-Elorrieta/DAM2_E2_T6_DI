@@ -139,9 +139,44 @@ where profe_id = (select id from users as u
   });
 });
 
-app.get("/meetings/:userId", (req, res) => {
+app.get("/meetings-student/:userId", (req, res) => {
   const userId = req.params.userId;
-  const query = ` `;
+  const query = `select 
+    r.estado as estado, 
+    r.titulo as titulo, 
+    r.asunto as asunto, 
+    r.aula as aula, 
+    r.fecha as fecha, 
+    r.id_centro as id_centro,
+    u.nombre as nombre_profesor,
+    u.apellidos as apellidos_profesor
+from reuniones r
+join users u on r.profesor_id = u.id
+where r.alumno_id = ?;`;
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results);
+  });
+});
+
+app.get("/meetings-teacher/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const query = `select 
+    r.estado as estado, 
+    r.titulo as titulo, 
+    r.asunto as asunto, 
+    r.aula as aula, 
+    r.fecha as fecha, 
+    r.id_centro as id_centro,
+    u.nombre as nombre_alumno,
+    u.apellidos as apellidos_alumno
+from reuniones r
+join users u on r.alumno_id = u.id
+where r.profesor_id = ?;`;
   db.query(query, [userId], (err, results) => {
     if (err) {
       console.error("Errorea datu-basera konektatzean:", err);

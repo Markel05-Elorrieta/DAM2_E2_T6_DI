@@ -60,11 +60,18 @@
 <p-divider type="solid" />
 
 <!-- Meetings Section -->
-<div class="mt-3 ml-6 mb-4">
-  <h2 class="text-3xl font-semibold text-white">Bilerak</h2>
-</div>
-<div class="col-span-1 md:col-span-2 lg:col-span-3">
-  <app-bilerak-card />
+<div class="p-6">
+  <p-card header="Bilerak ({{ bilerak.length }})" class="shadow-lg rounded-lg">
+    <!-- BILERAK -->
+    <div *ngIf="bilerak.length === 0">
+      <p class="m-6 text-center">Ez daukazu bilerarik, {{ user?.nombre }}!</p>
+    </div>
+    <div *ngIf="bilerak.length > 0">
+      <div *ngFor="let bilera of bilerak" class="mb-4">
+        <app-bilerak-card [bilera]="bilera"></app-bilerak-card>
+      </div>
+    </div>
+  </p-card>
 </div>
 
 <!-- Divider -->

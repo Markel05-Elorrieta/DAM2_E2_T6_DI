@@ -21,12 +21,13 @@ import { DividerModule } from 'primeng/divider';
 export class HomeIkasleComponent {
   title = 'HezkuntzaErronka2';
 
-  constructor(private authService: AuthService, private hezkuntzaService: HezkuntzaService) {}
+  constructor(private hezkuntzaService: HezkuntzaService) {}
 
   ngOnInit() {
     this.getLoggedUser();
     this.getTimetableIkasle();
     this.setSchedulesByTime();
+    this.getIkasleBilerak();
     //console.log(this.auxSchedule);
     //console.log(this.schedule);
   }
@@ -35,6 +36,7 @@ export class HomeIkasleComponent {
   
   schedule: any[][] = [];
   auxSchedule: IOrdutegia[] = [];
+  bilerak: any[] = [];
 
   getLoggedUser() {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -48,6 +50,17 @@ export class HomeIkasleComponent {
         (response: IOrdutegia) => {
           console.log(response);
           this.auxSchedule.push(response);
+        }
+      );
+    }
+  }
+
+  getIkasleBilerak() {
+    if (this.user) {
+      this.hezkuntzaService.getIkasleBilerak(this.user.id).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.bilerak = response;
         }
       );
     }

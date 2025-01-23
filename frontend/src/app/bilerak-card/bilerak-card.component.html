@@ -1,9 +1,17 @@
-<!-- <div class="grid grid-cols-4 gap-4 ml-5">
-  <p-card header="{{ bilera.titulo }}" subheader="{{ bilera.fecha }}">
+<div class="grid grid-cols-4 gap-4 ml-5">
+  <p-card class="!border !rounded-xl mt-4">
+    <ng-template #title>
+      <p>{{ bilera.titulo }}</p>
+      <p class="text-xs uppercase border w-fit p-1 mt-2">{{ bilera.estado }}</p>
+    </ng-template>
     <ng-template pTemplate="content">
-      <p class="text-sm">
+      <p>
         <strong>Asunto: </strong>
         {{ bilera.asunto }}
+      </p>
+      <p>
+        <strong>Fecha y hora: </strong>
+        {{ bilera.fecha }}
       </p>
       <p>
         <strong>Aula: </strong>
@@ -14,12 +22,11 @@
       <button
         pButton
         type="button"
-        label="Ver más"
+        label="Ver detalles"
         icon="pi pi-info-circle"
-        class="text-xs"
+        class="mt-3 "
         routerLink="/students/meetings/:id"
       ></button>
     </ng-template>
   </p-card>
 </div>
--->
