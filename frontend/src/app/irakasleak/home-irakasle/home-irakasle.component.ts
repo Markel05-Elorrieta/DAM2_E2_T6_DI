@@ -35,7 +35,8 @@ export class HomeIrakasleComponent {
   searchQuery: string = '';
   filteredStudents: any[] = [];
   user: IUser | undefined;
-  schedule: IOrdutegia | undefined;
+  schedule: any[][] = [];
+  auxSchedule: IOrdutegia[] = [];
 
   constructor(private hezkuntzaService: HezkuntzaService) {}
 
@@ -55,40 +56,46 @@ export class HomeIrakasleComponent {
       this.hezkuntzaService
         .getIrakasleOrdutegia(this.user.id)
         .subscribe((response: IOrdutegia) => {
-          this.schedule = response;
+          console.log(response);
+          this.auxSchedule.push(response);
+          console.log(this.auxSchedule);
         });
     }
   }
 
-  meetings = [
-    {
-      id: 1,
-      title: 'Project Meeting',
-      details: 'Discuss project requirements',
-      date: new Date(),
-      time: '14:00',
-    },
-    {
-      id: 2,
-      title: 'Team Meeting',
-      details: 'Weekly team sync-up',
-      date: new Date(),
-      time: '16:00',
-    },
-    // Add more meetings as needed
-  ];
-
   searchStudents() {
-    // Implement search logic here
-    this.filteredStudents = [
-      {
-        id: 1,
-        nan: '12345678A',
-        name: 'John Smith',
-        cycle: 'Computer Science',
-      },
-      { id: 2, nan: '87654321B', name: 'Mary Johnson', cycle: 'Mathematics' },
-      // Add more students as needed
-    ];
+    console.log(this.searchQuery);
+  }
+
+  setSchedulesByTime() {
+    // Inicializar la matriz de horarios (5 filas x 5 columnas)
+    this.schedule = Array.from({ length: 5 }, () => Array(5).fill(null));
+
+    for (let i = 1; i <= 5; i++) {
+      // Filtrar los módulos por día y hora correspondientes
+      const lunes = this.auxSchedule.find(
+        (aux) => aux.dia === 'L/A' && aux.hora === i.toString()
+      );
+      const martes = this.auxSchedule.find(
+        (aux) => aux.dia === 'M/A' && aux.hora === i.toString()
+      );
+      const miercoles = this.auxSchedule.find(
+        (aux) => aux.dia === 'X' && aux.hora === i.toString()
+      );
+      const jueves = this.auxSchedule.find(
+        (aux) => aux.dia === 'J/O' && aux.hora === i.toString()
+      );
+      const viernes = this.auxSchedule.find(
+        (aux) => aux.dia === 'V/O' && aux.hora === i.toString()
+      );
+
+      // Asignar los valores a la matriz de horarios
+      this.schedule[i - 1][0] = lunes?.modulo || '';
+      this.schedule[i - 1][1] = martes?.modulo || '';
+      this.schedule[i - 1][2] = miercoles?.modulo || '';
+      this.schedule[i - 1][3] = jueves?.modulo || '';
+      this.schedule[i - 1][4] = viernes?.modulo || '';
+    }
+    console.log(this.schedule);
   }
 }

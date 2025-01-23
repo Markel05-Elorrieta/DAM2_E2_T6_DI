@@ -1,5 +1,5 @@
 <div class="mr-5 mt-4">
-  <h1 class="text-4xl font-bold text-center">Ikaslearen espazioa</h1>
+  <h1 class="text-5xl font-bold text-center">Ikaslearen espazioa</h1>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 p-6">
   <!-- User Data Section -->
@@ -12,7 +12,9 @@
           class="rounded-full w-24 h-24 shadow-md mr-6"
         />
         <div>
-          <p class="font-bold text-5xl mb-5">{{ user?.nombre }} {{ user?.apellidos }}</p>
+          <p class="font-bold text-5xl mb-5">
+            {{ user?.nombre }} {{ user?.apellidos }}
+          </p>
           <p class="text-gray-400 text-lg">E-mail: {{ user?.email }}</p>
         </div>
       </div>
@@ -22,9 +24,10 @@
   <!-- Schedule Section -->
   <div class="col-span-1">
     <p-card header="Ordutegia" class="shadow-lg rounded-lg">
-      <p-table [value]="auxSchedule" showGridlines>
+      <p-table class="p-1" [value]="schedule" showGridlines>
         <ng-template pTemplate="header">
           <tr>
+            <th></th>
             <th>Lunes</th>
             <th>Martes</th>
             <th>Miércoles</th>
@@ -32,32 +35,14 @@
             <th>Viernes</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-horario>
-          <tr *ngFor="let horario of horario">
-            
-            <td>{{ horario.Dia }}</td>
-            <td>{{ horario.Hora }}</td>
-            <td>{{ horario.Modulo }}</td>
-          </tr>
-          <tr *ngFor="let horario of horario">
-            <td>{{ horario.Dia }}</td>
-            <td>{{ horario.Hora }}</td>
-            <td>{{ horario.Modulo }}</td>
-          </tr>
-          <tr *ngFor="let horario of horario">
-            <td>{{ horario.Dia }}</td>
-            <td>{{ horario.Hora }}</td>
-            <td>{{ horario.Modulo }}</td>
-          </tr>
-          <tr *ngFor="let horario of horario">
-            <td>{{ horario.Dia }}</td>
-            <td>{{ horario.Hora }}</td>
-            <td>{{ horario.Modulo }}</td>
-          </tr>
-          <tr *ngFor="let horario of horario">
-            <td>{{ horario.Dia }}</td>
-            <td>{{ horario.Hora }}</td>
-            <td>{{ horario.Modulo }}</td>
+        <ng-template pTemplate="body" let-i="rowIndex" let-horario>
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ horario[0]?.Modulo || "-" }}</td>
+            <td>{{ horario[1]?.Modulo || "-" }}</td>
+            <td>{{ horario[2]?.Modulo || "-" }}</td>
+            <td>{{ horario[3]?.Modulo || "-" }}</td>
+            <td>{{ horario[4]?.Modulo || "-" }}</td>
           </tr>
         </ng-template>
       </p-table>
@@ -71,4 +56,4 @@
   <h2 class="text-3xl font-semibold text-white">Bilerak</h2>
 </div>
 <!-- BILERAK -->
-<app-bilerak-card  />
+<app-bilerak-card />

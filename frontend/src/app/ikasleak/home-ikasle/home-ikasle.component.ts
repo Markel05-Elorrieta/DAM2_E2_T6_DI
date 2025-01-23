@@ -29,20 +29,12 @@ export class HomeIkasleComponent {
     this.setSchedulesByTime();
     //console.log(this.auxSchedule);
     //console.log(this.schedule);
-
-
   }
 
   user: IUser | undefined;
-
-  schedule: IOrdutegia[][] = [];
+  
+  schedule: any[][] = [];
   auxSchedule: IOrdutegia[] = [];
-
-  meetings = [
-    { title: 'Project Meeting', details: 'Discuss project requirements', date: new Date(), time: '14:00' },
-    { title: 'Team Meeting', details: 'Weekly team sync-up', date: new Date(), time: '16:00' },
-    // Add more meetings as needed
-  ];
 
   getLoggedUser() {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -54,22 +46,30 @@ export class HomeIkasleComponent {
     if (this.user) {
       this.hezkuntzaService.getIkasleOrdutegia(this.user.id).subscribe(
         (response: IOrdutegia) => {
+          console.log(response);
           this.auxSchedule.push(response);
         }
       );
     }
   }
 
-  setSchedulesByTime(){
+  setSchedulesByTime() {
+    // Initialize the schedule matrix
+    this.schedule = Array.from({ length: 5 }, () => Array(5).fill({ Modulo: '' }));
+  
     for (let i = 1; i <= 5; i++) {
-      // Use filter to get all matching schedules for the current hour
-      const matchingSchedules = this.auxSchedule.filter(auxSchedule => auxSchedule.hora == i.toString());
-      console.log(this.auxSchedule);
-      console.log(matchingSchedules);
-      // Push each matching schedule into the corresponding schedule array
-      if (matchingSchedules.length > 0) {
-        this.schedule[i - 1].push(...matchingSchedules); // Spread operator to add all matching schedules
-      }
+      // Filter schedules for each day of the week
+      const days = ['L/A', 'M/A', 'X', 'J/O', 'V/O'];
+      days.forEach((day, dayIndex) => {
+        const scheduleForDayAndHour = this.auxSchedule.filter(aux => aux.dia === day && aux.hora == i.toString());
+        // If there are overlapping modules, join their names
+        if (scheduleForDayAndHour.length > 0) {
+          this.schedule[i - 1][dayIndex] = {
+            Modulo: scheduleForDayAndHour.map(s => s.modulo).join(' / ')
+          };
+        }
+      });
     }
+    console.log(this.schedule);
   }
 }

@@ -62,7 +62,8 @@ app.get("/user-type/:userId", (req, res) => {
 
 app.get("/timetable-ikasle/:userId", (req, res) => {
   const userId = req.params.userId;
-  const query = `SELECT 
+  const query = `
+        SELECT 
     h.dia AS Dia,
     h.hora AS Hora,
     m.nombre AS Modulo
@@ -84,7 +85,7 @@ WHERE
                 FROM 
                     matriculaciones mat
                 WHERE 
-                    alum_id = ?
+                    alum_id = 3
             )
             AND m.curso = (
                 SELECT 
@@ -97,9 +98,17 @@ WHERE
     )
 GROUP BY 
     h.dia, h.hora, m.nombre
-ORDER BY
-    h.dia;
-`;
+        ORDER BY 
+            CASE 
+                WHEN h.dia = 'L/A' THEN 1
+                WHEN h.dia = 'M/A' THEN 2
+                WHEN h.dia = 'X' THEN 3
+                WHEN h.dia = 'J/O' THEN 4
+                WHEN h.dia = 'V/O' THEN 5
+                ELSE 6
+            END,
+            h.hora;
+    `;
   db.query(query, [userId, userId], (err, results) => {
     if (err) {
       console.error("Errorea datu-basera konektatzean:", err);
