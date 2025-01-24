@@ -1,0 +1,18 @@
+.denegada {
+  color: #ff6666;
+  font-weight: bold;
+}
+
+.pendiente {
+  color: rgb(236, 208, 79);
+  font-weight: bold;
+}
+
+.aceptada {
+  color: lightgreen;
+  font-weight: bold;
+}
+
+.conflicto {
+  font-weight: bold;
+}

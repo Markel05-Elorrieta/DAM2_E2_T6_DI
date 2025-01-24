@@ -5,3 +5,9 @@
 input {
   font-size: 1rem;
 }
+
+.p-toast {
+  width: 100%; 
+  max-width: 400px;
+  margin: 0 auto;
+}

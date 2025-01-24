@@ -1,7 +1,9 @@
 <div class="min-h-screen flex items-center justify-center custom-background">
   <p-card class="w-full max-w-md border-white-900">
     <div class="p-card-header text-center">
-      <h2 class="mb-4 text-2xl font-semibold text-white-700 mt-2">{{ 'login.signInToYourAccount' | translate }}</h2>
+      <h2 class="mb-4 text-2xl font-semibold text-white-700 mt-2">
+        {{ "login.signInToYourAccount" | translate }}
+      </h2>
     </div>
     <div class="p-card-body">
       <form (submit)="login()" class="space-y-10 p-9 border-t">
@@ -19,7 +21,7 @@
               autocomplete="off"
               class="p-inputtext-lg w-full"
             />
-            <label for="email">{{ 'login.email' | translate }}</label>
+            <label for="email">{{ "login.email" | translate }}</label>
           </p-floatlabel>
         </p-inputgroup>
         <!-- Password Input -->
@@ -37,7 +39,7 @@
               autocomplete="off"
               class="p-inputtext-lg w-full"
             />
-            <label for="password">{{ 'login.password' | translate }}</label>
+            <label for="password">{{ "login.password" | translate }}</label>
           </p-floatlabel>
           <p-inputgroup-addon>
             <button
@@ -63,5 +65,7 @@
       </form>
     </div>
   </p-card>
-  <p-toast position="bottom-right" />
+  <div class="card flex justify-center">
+    <p-toast position="top-center" />
+  </div>
 </div>

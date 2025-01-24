@@ -1,8 +1,18 @@
-<div class="grid grid-cols-4 gap-4 ml-5">
-  <p-card class="!border !rounded-xl mt-4">
+<div class="border rounded-lg mt-2 text-center">
+  <p-card>
     <ng-template #title>
       <p>{{ bilera.titulo }}</p>
-      <p class="text-xs uppercase border w-fit p-1 mt-2">{{ bilera.estado }}</p>
+      <p
+        [ngClass]="{
+          denegada: bilera.estado === 'denegada',
+          pendiente: bilera.estado === 'pendiente',
+          aceptada: bilera.estado === 'aceptada',
+          conflicto: bilera.estado === 'conflicto'
+        }"
+        class="inline-block text-xs uppercase border p-1 mt-2 mx-auto"
+      >
+        {{ bilera.estado }}
+      </p>
     </ng-template>
     <ng-template pTemplate="content">
       <p>
@@ -24,7 +34,7 @@
         type="button"
         label="Ver detalles"
         icon="pi pi-info-circle"
-        class="mt-3 "
+        class="mt-3"
         routerLink="/students/meetings/:id"
       ></button>
     </ng-template>

@@ -44,11 +44,12 @@ export class HeaderComponent {
   selectedLanguage: string = 'eu';
   checked: boolean = false;
   items: MenuItem[] | undefined;
+  loggedUsername: string = '';
 
   ngOnInit() {
     this.items = [
       {
-        label: 'Kaixo, ' + this.getLoggedUser() + '!',
+        label: 'Kaixo, ' + this.getLoggedUser + '!',
         items: [
           {
             label: 'Logout',
@@ -60,8 +61,6 @@ export class HeaderComponent {
         ],
       },
     ];
-
-    this.getLoggedUser();
 
     this.checked = this.getDarkModePreference();
     this.applyDarkMode(this.checked);
@@ -92,6 +91,7 @@ export class HeaderComponent {
   }
 
   getLoggedUser() {
+
     const user = JSON.parse(localStorage.getItem('user')!);
     return user ? user.nombre : '';
   }

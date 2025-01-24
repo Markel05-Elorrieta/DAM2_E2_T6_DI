@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const e = require("express");
 
 const app = express();
 app.use(cors());
@@ -26,14 +27,14 @@ db.connect((err) => {
 });
 
 app.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  const query = "SELECT * FROM users WHERE email = ? AND password = ?";
-  db.query(query, [email, password], (err, results) => {
+  const { email } = req.body;
+  const query = "SELECT * FROM users WHERE email = ?";
+  db.query(query, [email], (err, results) => {
     if (err) throw err;
     if (results.length > 0) {
       res.send({ success: true, user: results[0] });
     } else {
-      res.send({ success: false, message: "Invalid credentials" });
+      res.send({ success: false });
     }
   });
 });

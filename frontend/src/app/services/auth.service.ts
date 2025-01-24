@@ -11,8 +11,8 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
-  login(email: string, password: string): Observable<{ success: boolean; user: IUser }> {
-    return this.httpClient.post<{ success: boolean; user: IUser }>(`${environment.APIUrl}/login`, { email, password });
+  login(email: string): Observable<{ success: boolean; user: IUser }> {
+    return this.httpClient.post<{ success: boolean; user: IUser }>(`${environment.APIUrl}/login`, { email });
   }
 
   getUserType(userId: number): Observable<{ userType: String }> {

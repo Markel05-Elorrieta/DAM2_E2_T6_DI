@@ -15,6 +15,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { IUser } from '../interfaces/IUser';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +33,10 @@ import { MessageService } from 'primeng/api';
     TranslateModule,
     TooltipModule,
     ToastModule,
-   ],
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class LoginComponent {
   title = 'HezkuntzaErronka2';
@@ -45,43 +46,88 @@ export class LoginComponent {
   passwordVisible: boolean = false;
   _user!: IUser;
 
-  constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
-  login() {
-    this.authService.login(this.email, this.password).subscribe(
-      (response: { success: boolean; user: IUser }) => {
-        if (this.email === '' || this.password === '') {
-          this.messageService.add({severity:'warn', summary:'Fill all gaps', detail:'Email or password empty!', life: 5000});
-        } else {
-          if (response && response.success) {
-            this._user = response.user as IUser;
-            this.authService.saveUser(this._user);
-            this.authService.getUserType(this._user.id).subscribe(
-              (userTypeResponse: { userType: String }) => {
+  ngOnInit() {}
+
+  async login() {
+    if (this.email === '' || this.password === '') {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Fill all gaps',
+        detail: 'Email or password empty!',
+        life: 4500,
+      });
+    } else {
+    this.authService
+      .login(this.email)
+      .subscribe(async (response: { success: boolean; user: IUser }) => {
+        if (response && response.success) {
+            if (await this.comprobarPasswdHash(response.user.password)) {
+              this._user = response.user as IUser;
+              this.authService.saveUser(this._user);
+              this.authService
+              .getUserType(this._user.id)
+              .subscribe((userTypeResponse: { userType: String }) => {
                 console.log(userTypeResponse);
-                if (userTypeResponse && userTypeResponse.userType === 'jainkoa') {
+                if (
+                  userTypeResponse &&
+                  userTypeResponse.userType === 'jainkoa'
+                ) {
                   this.router.navigate(['/god']);
-                } else if (userTypeResponse && userTypeResponse.userType === 'ikaslea') {
+                } else if (
+                  userTypeResponse &&
+                  userTypeResponse.userType === 'ikaslea'
+                ) {
                   this.router.navigate(['/students']);
-                } else if (userTypeResponse && userTypeResponse.userType === 'irakaslea') {
+                } else if (
+                  userTypeResponse &&
+                  userTypeResponse.userType === 'irakaslea'
+                ) {
                   this.router.navigate(['/teachers']);
-                } else if (userTypeResponse && userTypeResponse.userType === 'administratzailea') {
+                } else if (
+                  userTypeResponse &&
+                  userTypeResponse.userType === 'administratzailea'
+                ) {
                   this.router.navigate(['/admin']);
                 } else {
-                  this.messageService.add({severity:'error', summary:'Error', detail:'Error fetching user type', life: 5000});
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Error fetching user type',
+                    life: 4500,
+                  });
                 }
-              }
-            );
+              });
+            } else {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Invalid credentials',
+                detail: 'Email or password incorrect!',
+                life: 4500,
+              });
+            }
           } else {
-            this.messageService.add({severity:'error', summary:'Invalid credentials', detail:'Email or password incorrect!', life: 5000});
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Invalid credentials',
+              detail: 'Email does not exist!',
+              life: 4500,
+            });
           }
         }
-      }
-    );  
+      );
+    }
   }
 
   togglePasswordVisibility() {
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    const passwordInput = document.getElementById(
+      'password'
+    ) as HTMLInputElement;
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
       this.passwordVisible = true;
@@ -89,5 +135,26 @@ export class LoginComponent {
       passwordInput.type = 'password';
       this.passwordVisible = false;
     }
+  }
+
+  async encryptPassword(): Promise<string> {
+    const passwd = this.password;
+    try {
+      const salt = await bcrypt.genSalt();
+      const hash = await bcrypt.hash(passwd, salt);
+      console.log('Hashed password: ' + hash);
+      return hash;
+    } catch (err) {
+      console.error('Error hashing password', err);
+      throw err;
+    }
+  }
+
+  async comprobarPasswdHash(passwdUser: string): Promise<boolean> {
+    const passwd = this.password;
+    const hash = passwdUser;
+    const isMatch = await bcrypt.compare(passwd, hash);
+    console.log('Password match: ' + isMatch);
+    return isMatch;
   }
 }

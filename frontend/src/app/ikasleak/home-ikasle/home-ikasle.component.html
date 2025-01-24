@@ -58,7 +58,7 @@
     <div *ngIf="bilerak.length === 0">
       <p class="m-6 text-center">Ez daukazu bilerarik, {{ user?.nombre }}!</p>
     </div>
-    <div *ngIf="bilerak.length > 0">
+    <div class="grid grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
       <div *ngFor="let bilera of bilerak" class="mb-4">
         <app-bilerak-card [bilera]="bilera"></app-bilerak-card>
       </div>
