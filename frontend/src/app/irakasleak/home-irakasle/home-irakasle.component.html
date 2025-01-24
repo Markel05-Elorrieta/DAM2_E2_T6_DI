@@ -9,7 +9,7 @@
     <p-card header="Irakaslearen datuak" class="shadow-lg rounded-lg">
       <div class="flex items-center p-6">
         <img
-          [src]="getLoggedUser() | photosPipe"
+          [src]="user?.argazkia| photosPipe"
           alt="User Photo"
           class="rounded-full w-24 h-24 shadow-md mr-6"
         />

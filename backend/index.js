@@ -143,6 +143,7 @@ where profe_id = (select id from users as u
 app.get("/meetings-student/:userId", (req, res) => {
   const userId = req.params.userId;
   const query = `select 
+    r.id_reunion as id,
     r.estado as estado, 
     r.titulo as titulo, 
     r.asunto as asunto, 
@@ -166,7 +167,8 @@ where r.alumno_id = ?;`;
 
 app.get("/meetings-teacher/:userId", (req, res) => {
   const userId = req.params.userId;
-  const query = `select 
+  const query = `select
+    r.id_reunion as id, 
     r.estado as estado, 
     r.titulo as titulo, 
     r.asunto as asunto, 
@@ -185,6 +187,56 @@ where r.profesor_id = ?;`;
       return;
     }
     res.send(results);
+  });
+});
+
+app.get("/meeting-teacher/:meetingId", (req, res) => {
+  const meetingId = req.params.meetingId;
+  const query = `select
+    r.id_reunion as id, 
+    r.estado as estado, 
+    r.titulo as titulo, 
+    r.asunto as asunto, 
+    r.aula as aula, 
+    r.fecha as fecha, 
+    r.id_centro as id_centro,
+    u.nombre as nombre_alumno,
+    u.apellidos as apellidos_alumno
+from reuniones r
+join users u on r.alumno_id = u.id
+where r.id_reunion = ?;`;
+  db.query(query, [meetingId], (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results[0]);
+  });
+});
+
+app.get("/meeting-student/:meetingId", (req, res) => {
+  const meetingId = req.params.meetingId;
+  const query = `select 
+    r.id_reunion as id,
+    r.estado as estado, 
+    r.titulo as titulo, 
+    r.asunto as asunto, 
+    r.aula as aula, 
+    r.fecha as fecha, 
+    r.id_centro as id_centro,
+    u.nombre as nombre_profesor,
+    u.apellidos as apellidos_profesor
+from reuniones r
+join users u on r.profesor_id = u.id
+where r.id_reunion = ?;`;
+  db.query(query, [meetingId], (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results[0]);
   });
 });
 

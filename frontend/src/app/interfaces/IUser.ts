@@ -8,7 +8,12 @@ export interface IUser {
   dni:       string;
   direccion: string;
   telefono1: number | null;
-  telefono2: null;
+  telefono2: number | null;
   tipo_id:   number;
-  argazkia:  null;
+  argazkia:  Argazkia | null;
+}
+
+export interface Argazkia {
+  type: string;
+  data: Uint8Array;
 }

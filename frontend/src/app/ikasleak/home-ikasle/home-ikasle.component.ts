@@ -41,14 +41,17 @@ export class HomeIkasleComponent {
   getLoggedUser() {
     const user = JSON.parse(localStorage.getItem('user')!);
     this.user = user;
-    return user ? user.nombre : '';
+   
+  }
+
+  decodeImageBase64() {
+    return `data:image/jpeg;base64,${this.user?.argazkia}`;
   }
 
   getTimetableIkasle() {
     if (this.user) {
       this.hezkuntzaService.getIkasleOrdutegia(this.user.id).subscribe(
         (response: IOrdutegia) => {
-          console.log(response);
           this.auxSchedule.push(response);
         }
       );
@@ -59,7 +62,6 @@ export class HomeIkasleComponent {
     if (this.user) {
       this.hezkuntzaService.getIkasleBilerak(this.user.id).subscribe(
         (response: any) => {
-          console.log(response);
           this.bilerak = response;
         }
       );

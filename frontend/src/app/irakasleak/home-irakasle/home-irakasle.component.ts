@@ -11,7 +11,7 @@ import { IUser } from '../../interfaces/IUser';
 import { PhotosPipe } from '../../pipes/photos.pipe';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { IOrdutegia } from '../../interfaces/IOrdutegia';
-import { IReuniones } from '../../interfaces/IReuniones';
+import { IReunionesProfesor } from '../../interfaces/IReunionesProfesor';
 
 @Component({
   selector: 'app-home-irakasle',
@@ -38,7 +38,7 @@ export class HomeIrakasleComponent {
   user: IUser | undefined;
   schedule: any[][] = [];
   auxSchedule: IOrdutegia[] = [];
-  bilerak: IReuniones[] = [];
+  bilerak: IReunionesProfesor[] = [];
 
   constructor(private hezkuntzaService: HezkuntzaService) {}
 
