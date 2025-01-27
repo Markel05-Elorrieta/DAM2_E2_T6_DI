@@ -1,0 +1,77 @@
+<div class="container mx-auto p-6">
+  <a
+    [routerLink]="returnRoute"
+    class="text-blue-500 flex items-center mb-4"
+  >
+    <i class="pi pi-angle-left mr-2"></i>
+    Volver a la dashboard
+  </a>
+  <h1 class="text-4xl font-bold mb-4">Bileraren informazioa</h1>
+  <p-card *ngIf="bilerakAlumno; else profesorTemplate">
+    <ng-template #title>
+      <p class="text-2xl">{{ bilerakAlumno.titulo }}</p>
+    </ng-template>
+    <p class="inline-block text-xs uppercase border p-1 mt-2 mb-4 mx-auto">
+      {{ bilerakAlumno.estado }}
+    </p>
+    <!-- BILERAK ALUMNO -->
+    <div class="space-y-4">
+      <p class="text-lg">
+        <strong>Asunto: </strong>
+        {{ bilerakAlumno.asunto }}
+      </p>
+      <p class="text-lg">
+        <strong>Fecha y hora: </strong>
+        {{ bilerakAlumno.fecha | date:'dd/MM/yyyy - HH:mm' }}h
+      </p>
+      <p class="text-lg">
+        <strong>Aula: </strong>
+        {{ bilerakAlumno.aula }}
+      </p>
+      <p class="text-lg">
+        <strong>Profesor: </strong>
+        {{ bilerakAlumno.nombre_profesor }}
+        {{ bilerakAlumno.apellidos_profesor }}
+      </p>
+    </div>
+  </p-card>
+
+  <ng-template #profesorTemplate>
+    <p-card>
+      <ng-template #title>
+        <p class="text-3xl">{{ bilerakProfesor?.titulo }}</p>
+      </ng-template>
+      <p class="inline-block text-xs uppercase border p-1 mt-2 mb-4 mx-auto">
+        {{ bilerakProfesor?.estado }}
+      </p>
+      <!-- BILERAK PROFESOR -->
+      <div class="space-y-4">
+        <p class="text-lg">
+          <strong>Asunto: </strong>
+          {{ bilerakProfesor?.asunto }}
+        </p>
+        <p class="text-lg">
+          <strong>Fecha y hora: </strong>
+          {{ bilerakProfesor?.fecha | date:'dd/MM/yyyy - HH:mm' }}h
+        </p>
+        <p class="text-lg">
+          <strong>Aula: </strong>
+          {{ bilerakProfesor?.aula }}
+        </p>
+        <p class="text-lg">
+          <strong>Alumno: </strong>
+          {{ bilerakProfesor?.nombre_alumno }}
+          {{ bilerakProfesor?.apellidos_alumno }}
+        </p>
+      </div>
+    </p-card>
+  </ng-template>
+
+  <div class="grid gap-4 mt-6">
+    <p-card header="Mapa · Bileraren kokapena" class="shadow-lg rounded-lg">
+      <div class="h-96 mt-2">
+        <div id="mapa" class="h-full"></div>
+      </div>
+    </p-card>
+  </div>
+</div>

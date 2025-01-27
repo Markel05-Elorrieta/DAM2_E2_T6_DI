@@ -8,7 +8,7 @@ import { IUser } from '../../interfaces/IUser';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { IOrdutegia } from '../../interfaces/IOrdutegia';
 import { PhotosPipe } from "../../pipes/photos.pipe";
-import { BilerakCardComponent } from '../../bilerak-card/bilerak-card.component';
+import { BilerakCardComponent } from '../../bilerakComponents/bilerak-card/bilerak-card.component';
 import { DividerModule } from 'primeng/divider';
 
 @Component({

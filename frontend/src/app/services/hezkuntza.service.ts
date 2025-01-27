@@ -5,6 +5,7 @@ import { IOrdutegia } from '../interfaces/IOrdutegia';
 import { environment } from '../environments/environment';
 import { IReunionesAlumno } from '../interfaces/IReunionesAlumno';
 import { IReunionesProfesor } from '../interfaces/IReunionesProfesor';
+import { IIkastetxeak } from '../interfaces/IIkastetxeak';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +35,9 @@ export class HezkuntzaService {
 
   getIrakasleBileraByID(bileraID: number): Observable<IReunionesProfesor> {
     return this.httpClient.get<IReunionesProfesor>(environment.APIUrl + '/meeting-teacher/' + bileraID);
+  }
+
+  getIkastetxeak(): Observable<IIkastetxeak> {
+    return this.httpClient.get<IIkastetxeak>(environment.IkastetxeakAPIUrl + '/IKASTETXEAK/');
   }
 }

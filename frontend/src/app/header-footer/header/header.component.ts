@@ -7,8 +7,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { AuthService } from '../services/auth.service';
-import { PhotosPipe } from '../pipes/photos.pipe';
+import { AuthService } from '../../services/auth.service';
+import { PhotosPipe } from '../../pipes/photos.pipe';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
@@ -49,7 +49,7 @@ export class HeaderComponent {
   ngOnInit() {
     this.items = [
       {
-        label: 'Kaixo, ' + this.getLoggedUser + '!',
+        label: 'Kaixo, ' + this.getLoggedUser() + '!',
         items: [
           {
             label: 'Logout',
@@ -91,7 +91,6 @@ export class HeaderComponent {
   }
 
   getLoggedUser() {
-
     const user = JSON.parse(localStorage.getItem('user')!);
     return user ? user.nombre : '';
   }

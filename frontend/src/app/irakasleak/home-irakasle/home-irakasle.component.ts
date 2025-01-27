@@ -6,7 +6,7 @@ import { TableModule } from 'primeng/table';
 import { ListboxModule } from 'primeng/listbox';
 import { RouterLink } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
-import { BilerakCardComponent } from '../../bilerak-card/bilerak-card.component';
+import { BilerakCardComponent } from '../../bilerakComponents/bilerak-card/bilerak-card.component';
 import { IUser } from '../../interfaces/IUser';
 import { PhotosPipe } from '../../pipes/photos.pipe';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
