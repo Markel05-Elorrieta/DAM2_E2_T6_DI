@@ -240,6 +240,18 @@ where r.id_reunion = ?;`;
   });
 });
 
+app.get("/students", (req, res) => {
+  const query = `select * from users where tipo_id = 4;`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results);
+  });
+});
+
 // Zerbitzaria hasieratu
 const PORT = 3001;
 app.listen(PORT, () => {

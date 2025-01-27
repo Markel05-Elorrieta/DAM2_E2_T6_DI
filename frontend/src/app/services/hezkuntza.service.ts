@@ -6,12 +6,17 @@ import { environment } from '../environments/environment';
 import { IReunionesAlumno } from '../interfaces/IReunionesAlumno';
 import { IReunionesProfesor } from '../interfaces/IReunionesProfesor';
 import { IIkastetxeak } from '../interfaces/IIkastetxeak';
+import { IUser } from '../interfaces/IUser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HezkuntzaService {
   constructor(private httpClient: HttpClient) {}
+
+  getAllIkasleak(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(environment.APIUrl + '/students');
+  }
 
   getIkasleOrdutegia(userId: number): Observable<IOrdutegia> {
     return this.httpClient.get<IOrdutegia>(environment.APIUrl + '/timetable-ikasle/' + userId);
