@@ -26,17 +26,13 @@ export class HomeIkasleComponent {
   ngOnInit() {
     this.getLoggedUser();
     this.getTimetableIkasle();
-    this.setSchedulesByTime();
     this.getIkasleBilerak();
-    //console.log(this.auxSchedule);
-    //console.log(this.schedule);
   }
 
   user: IUser | undefined;
-  
-  schedule: any[][] = [];
-  auxSchedule: IOrdutegia[] = [];
+  schedule: IOrdutegia[] = [];
   bilerak: any[] = [];
+  hours: number[] = [1, 2, 3, 4, 5]; // Update based on your time slots
 
   getLoggedUser() {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -52,7 +48,7 @@ export class HomeIkasleComponent {
     if (this.user) {
       this.hezkuntzaService.getIkasleOrdutegia(this.user.id).subscribe(
         (response: IOrdutegia) => {
-          this.auxSchedule.push(response);
+          this.schedule.push(response);
         }
       );
     }
@@ -68,23 +64,10 @@ export class HomeIkasleComponent {
     }
   }
 
-  setSchedulesByTime() {
-    // Initialize the schedule matrix
-    this.schedule = Array.from({ length: 5 }, () => Array(5).fill({ Modulo: '' }));
-  
-    for (let i = 1; i <= 5; i++) {
-      // Filter schedules for each day of the week
-      const days = ['L/A', 'M/A', 'X', 'J/O', 'V/O'];
-      days.forEach((day, dayIndex) => {
-        const scheduleForDayAndHour = this.auxSchedule.filter(aux => aux.dia === day && aux.hora == i.toString());
-        // If there are overlapping modules, join their names
-        if (scheduleForDayAndHour.length > 0) {
-          this.schedule[i - 1][dayIndex] = {
-            Modulo: scheduleForDayAndHour.map(s => s.modulo).join(' / ')
-          };
-        }
-      });
-    }
-    console.log(this.schedule);
+  findModule(day: string, hour: number): string {
+    const entry = this.schedule.find(
+      (item: any) => item.dia === day && item.hora === hour.toString()
+    );
+    return entry ? entry.modulo : '';
   }
 }
