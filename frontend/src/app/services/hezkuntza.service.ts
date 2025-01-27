@@ -18,6 +18,10 @@ export class HezkuntzaService {
     return this.httpClient.get<IUser[]>(environment.APIUrl + '/students');
   }
 
+  getAllIrakasleak(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(environment.APIUrl + '/teachers');
+  } 
+
   getIkasleOrdutegia(userId: number): Observable<IOrdutegia> {
     return this.httpClient.get<IOrdutegia>(environment.APIUrl + '/timetable-ikasle/' + userId);
   }

@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { IUser } from '../../../interfaces/IUser';
 import { PhotosPipe } from '../../../pipes/photos.pipe';
-import { HezkuntzaService } from '../../../services/hezkuntza.service';
 
 @Component({
   selector: 'app-ikasle-irakasle-card',
@@ -12,6 +11,6 @@ import { HezkuntzaService } from '../../../services/hezkuntza.service';
   styleUrl: './ikasle-irakasle-card.component.css',
 })
 export class IkasleIrakasleCardComponent {
-  @Input() ikasle: IUser | undefined;
+  @Input() ikasleIrakasle: IUser | undefined;
 
 }

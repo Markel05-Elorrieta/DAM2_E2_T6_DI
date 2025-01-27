@@ -19,6 +19,7 @@ export class GodAdminComponent {
   user: IUser | undefined;
   userType: String | undefined;
   ikasleak: IUser[] = [];
+  irakasleak: IUser[] = [];
 
   constructor(private authService: AuthService, private hezkuntzaService: HezkuntzaService) {}
 
@@ -26,6 +27,7 @@ export class GodAdminComponent {
     this.getLoggedUser();
     this.getUserType();
     this.getAllIkasleak();
+    this.getAllIrakasleak();
   }
 
   getLoggedUser() {
@@ -44,6 +46,12 @@ export class GodAdminComponent {
   getAllIkasleak() {
     this.hezkuntzaService.getAllIkasleak().subscribe((response: IUser[]) => {
       this.ikasleak = response;
+    });
+  }
+
+  getAllIrakasleak() {
+    this.hezkuntzaService.getAllIrakasleak().subscribe((response: IUser[]) => {
+      this.irakasleak = response;
     });
   }
 }
