@@ -47,6 +47,7 @@ export class HomeIrakasleComponent {
     this.getTimetableIrakasle();
     this.getIrakasleBilerak();
     console.log(this.schedule);
+    
   }
 
   getLoggedUser() {
@@ -76,13 +77,23 @@ export class HomeIrakasleComponent {
     }
   }
 
-  // Find the module for a given day and hour
   findModule(day: string, hour: string): string {
-    console.log(`Searching for ${day} and hour ${hour}`); // Debugging statement
-    const module = this.schedule.find(s => s.dia == day && s.hora == hour);
+    console.log(`Searching for day: "${day}", hour: "${hour}"`);
+    console.log('Full Schedule:', this.schedule);
+  
+    // Access the first element of the schedule array
+    const scheduleArray = this.schedule[0];
+  
+    if (!Array.isArray(scheduleArray)) {
+      console.error('Schedule data is not an array:', scheduleArray);
+      return ''; // Return empty if the data structure is unexpected
+    }
+  
+    // Find the matching module
+    const module = scheduleArray.find(s => s.dia === day && s.hora === hour);
     const aux = module ? module.modulo : '';
-    console.log(aux); // Log the result of the search
-    return aux; // Return the title if found, otherwise empty string
+    console.log(`Result for day: "${day}", hour: "${hour}" -> "${aux}"`);
+    return aux;
   }
 
   searchStudents() {
