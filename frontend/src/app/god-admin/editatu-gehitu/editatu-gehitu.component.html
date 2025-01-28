@@ -1,100 +1,123 @@
-<p-card header="Editar usuario" class="shadow-lg rounded-lg m-5">
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <div class="space-y-4 mt-3 m-4">
-      <div class="flex flex-col">
-        <label for="username" class="mb-2 text-sm font-medium"
-          >Nombre de usuario</label
-        >
-        <input
-          id="username"
-          type="text"
-          pInputText
-          formControlName="username"
-          class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
+<div class="flex justify-start m-5">
+  <a routerLink="/god-admin" class="text-blue-500 flex items-center mb-1">
+    <i class="pi pi-angle-left mr-2"></i>
+    Volver a la dashboard
+  </a>
+</div>
+<div class="flex justify-center items-center min-h-screen">
+  <p-card
+    [header]="user ? 'Editar usuario' : 'Añadir usuario'"
+    class="shadow-lg rounded-lg m-5 w-full max-w-md"
+  >
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="space-y-4 mt-3 m-4">
+        <div class="flex flex-col">
+          <label for="username" class="mb-2 text-sm font-medium"
+            >Nombre de usuario</label
+          >
+          <input
+            id="username"
+            type="text"
+            pInputText
+            formControlName="username"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="nombre" class="mb-2 text-sm font-medium">Nombre</label>
+          <input
+            id="nombre"
+            type="text"
+            pInputText
+            formControlName="nombre"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="apellidos" class="mb-2 text-sm font-medium"
+            >Apellidos</label
+          >
+          <input
+            id="apellidos"
+            type="text"
+            pInputText
+            formControlName="apellidos"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="email" class="mb-2 text-sm font-medium"
+            >Correo electrónico</label
+          >
+          <input
+            id="email"
+            type="email"
+            pInputText
+            formControlName="email"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div *ngIf="!user" class="flex flex-col">
+          <label for="password" class="mb-2 text-sm font-medium">Contraseña</label>
+          <input
+            id="password"
+            type="password"
+            pInputText
+            formControlName="password"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="role" class="mb-2 text-sm font-medium">Rol</label>
+          <p-select
+            [options]="roles"
+            formControlName="role"
+            placeholder="Selecciona un rol"
+          ></p-select>
+        </div>
+        <div class="flex flex-col">
+          <label for="phone" class="mb-2 text-sm font-medium">Teléfono</label>
+          <input
+            id="phone"
+            type="text"
+            pInputText
+            formControlName="phone"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="dni" class="mb-2 text-sm font-medium">DNI</label>
+          <input
+            id="dni"
+            type="text"
+            pInputText
+            formControlName="dni"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="address" class="mb-2 text-sm font-medium"
+            >Dirección</label
+          >
+          <input
+            id="address"
+            type="text"
+            pInputText
+            formControlName="address"
+            class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            pButton
+            [label]="user ? 'Editar' : 'Añadir'"
+            class="px-4 py-2 font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          ></button>
+        </div>
       </div>
-      <div class="flex flex-col">
-        <label for="nombre" class="mb-2 text-sm font-medium">Nombre</label>
-        <input
-          id="nombre"
-          type="text"
-          pInputText
-          formControlName="nombre"
-          class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label for="apellidos" class="mb-2 text-sm font-medium"
-          >Apellidos</label
-        >
-        <input
-          id="apellidos"
-          type="text"
-          pInputText
-          formControlName="apellidos"
-          class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label for="email" class="mb-2 text-sm font-medium"
-          >Correo electrónico</label
-        >
-        <input
-          id="email"
-          type="email"
-          pInputText
-          formControlName="email"
-          class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label for="role" class="mb-2 text-sm font-medium">Rol</label>
-        <p-select
-          [options]="roles"
-          formControlName="role"
-          placeholder="Selecciona un rol"
-        ></p-select>
-      </div>
-      <div class="flex flex-col">
-        <label for="phone" class="mb-2 text-sm font-medium">Teléfono</label>
-        <input
-          id="phone"
-          type="text"
-          pInputText
-          formControlName="phone"
-          class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label for="dni" class="mb-2 text-sm font-medium">DNI</label>
-        <input
-          id="dni"
-          type="text"
-          pInputText
-          formControlName="dni"
-          class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label for="address" class="mb-2 text-sm font-medium">Dirección</label>
-        <input
-          id="address"
-          type="text"
-          pInputText
-          formControlName="address"
-          class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
-      <div class="flex justify-end">
-        <button
-          type="submit"
-          pButton
-          label="Guardar"
-          class="px-4 py-2 font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        ></button>
-      </div>
-    </div>
-  </form>
-</p-card>
+    </form>
+  </p-card>
+</div>
 
 <p-toast position="top-center" />

@@ -90,4 +90,29 @@ export class HezkuntzaService {
       }
     );
   }
+
+  addUser(user: IUser): Observable<IUser> {
+    const {
+      nombre,
+      apellidos,
+      email,
+      telefono1,
+      username,
+      password,
+      dni,
+      tipo_id: role,
+      direccion,
+    } = user;
+    return this.httpClient.post<IUser>(`${environment.APIUrl}/user-add/`, {
+      nombre,
+      apellidos,
+      email,
+      telefono1,
+      username,
+      password,
+      dni,
+      role,
+      direccion,
+    });
+  }
 }

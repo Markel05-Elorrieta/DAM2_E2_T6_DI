@@ -1,20 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { SelectModule } from 'primeng/select';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
-import {
-  FormsModule,
-  FormGroup,
-  FormControl,
-} from '@angular/forms';
+import { FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IUser } from '../../interfaces/IUser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ToastModule } from 'primeng/toast';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-editatu-gehitu',
@@ -27,6 +24,7 @@ import { HezkuntzaService } from '../../services/hezkuntza.service';
     ReactiveFormsModule,
     ButtonModule,
     ToastModule,
+    RouterLink,
   ],
   templateUrl: './editatu-gehitu.component.html',
   styleUrl: './editatu-gehitu.component.css',
@@ -34,7 +32,6 @@ import { HezkuntzaService } from '../../services/hezkuntza.service';
 })
 export class EditatuGehituComponent {
   user: IUser | undefined;
-  displayDialog: boolean = false;
   formGroup: FormGroup;
   userID: number | undefined;
 
@@ -57,7 +54,7 @@ export class EditatuGehituComponent {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private hezkuntzaService: HezkuntzaService,
+    private hezkuntzaService: HezkuntzaService
   ) {
     this.formGroup = new FormGroup({
       username: new FormControl(this.user?.username),
@@ -68,6 +65,7 @@ export class EditatuGehituComponent {
       address: new FormControl(this.user?.direccion),
       email: new FormControl(this.user?.email),
       role: new FormControl(this.user?.tipo_id),
+      password: new FormControl(this.user?.password),
     });
   }
 
@@ -89,16 +87,14 @@ export class EditatuGehituComponent {
             dni: this.user.dni,
             address: this.user.direccion,
             email: this.user.email,
-            role: this.getRoleByTipoId(this.user.tipo_id),
             password: this.user.password,
+            role: this.getRoleByTipoId(this.user.tipo_id),
           });
         },
         (error: any) => {
           console.error('Error loading user info:', error);
         }
       );
-    } else {
-      console.error('UserID is not defined');
     }
   }
 
@@ -108,27 +104,87 @@ export class EditatuGehituComponent {
   }
 
   onSubmit() {
-    if (this.formGroup.dirty && this.formGroup.valid) {
-      const updatedUser: IUser = {
-        ...this.user,
-        ...this.formGroup.value,
-        tipo_id: this.roles.find(
-          (role) => role.value === this.formGroup.value.role
-        )?.tipo_id,
-      };
+    if (this.userID) {
+      // Edit existing user
+      if (this.formGroup.dirty && this.formGroup.valid) {
+        const updatedUser: IUser = {
+          ...this.user,
+          ...this.formGroup.value,
+          tipo_id: this.roles.find(
+            (role) => role.value === this.formGroup.value.role
+          )?.tipo_id,
+        };
 
-      this.hezkuntzaService.updateUser(updatedUser).subscribe(
-        () => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully!' });
-          this.router.navigate(['/god']);
-        },
-        (error: any) => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error updating user!' });
-          console.error('Error updating user:', error);
-        }
-      );
+        this.hezkuntzaService.updateUser(updatedUser).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'User updated successfully!',
+              life: 4500,
+            });
+            this.router.navigate(['/god']);
+          },
+          (error: any) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Error updating user!',
+              life: 4500,
+            });
+            console.error('Error updating user:', error);
+          }
+        );
+      } else {
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Warning',
+          detail: 'No changes made in form!',
+          life: 4500,
+        });
+      }
     } else {
-      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'No changes made in form!' });  
+      // Add new user
+      if (this.formGroup.valid) {
+        const newUser: IUser = {
+          ...this.formGroup.value,
+          tipo_id: this.roles.find(
+            (role) => role.value === this.formGroup.value.role
+          )?.tipo_id,
+        };
+
+        this.hezkuntzaService.addUser(newUser).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'User added successfully!',
+              life: 4500,
+            });
+            this.router.navigate(['/god']);
+          },
+          (error: any) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Error adding user!',
+              life: 4500,
+            });
+            console.error('Error adding user:', error);
+          }
+        );
+      } else {
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Warning',
+          detail: 'Form is invalid!',
+          life: 4500,
+        });
+      }
     }
+  }
+
+  goBack() {
+    this.router.navigate(['/god-admin']);
   }
 }

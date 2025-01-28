@@ -76,8 +76,16 @@ app.get("/user/:userId", (req, res) => {
 
 app.post("/user-update/:userId", (req, res) => {
   const userId = req.params.userId;
-  const { nombre, apellidos, email, telefono1, username, dni, role, direccion } =
-    req.body;
+  const {
+    nombre,
+    apellidos,
+    email,
+    telefono1,
+    username,
+    dni,
+    role,
+    direccion,
+  } = req.body;
   const query =
     "UPDATE users SET nombre = ?, apellidos = ?, email = ?, telefono1 = ?, username = ?, dni = ?, tipo_id = ?, direccion = ? WHERE id = ?";
   db.query(
@@ -92,6 +100,40 @@ app.post("/user-update/:userId", (req, res) => {
       role,
       direccion,
       userId,
+    ],
+    (err, results) => {
+      if (err) throw err;
+      res.send({ success: true });
+    }
+  );
+});
+
+app.post("/user-add/", (req, res) => {
+  const {
+    nombre,
+    apellidos,
+    email,
+    telefono1,
+    username,
+    password,
+    dni,
+    role,
+    direccion,
+  } = req.body;
+  const query =
+    "INSERT INTO users (nombre, apellidos, email, telefono1, username, password, dni, tipo_id, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  db.query(
+    query,
+    [
+      nombre,
+      apellidos,
+      email,
+      telefono1,
+      username,
+      password,
+      dni,
+      role,
+      direccion,
     ],
     (err, results) => {
       if (err) throw err;

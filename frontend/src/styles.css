@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --p-primary-color: cyan;
+}
+
 html,
 body {
   height: 100%;

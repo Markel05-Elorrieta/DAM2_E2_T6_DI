@@ -78,7 +78,7 @@ export class LoginComponent {
                   userTypeResponse &&
                   userTypeResponse.userType === 'jainkoa'
                 ) {
-                  this.router.navigate(['/god']);
+                  this.router.navigate(['/god-admin']);
                 } else if (
                   userTypeResponse &&
                   userTypeResponse.userType === 'ikaslea'
@@ -93,7 +93,7 @@ export class LoginComponent {
                   userTypeResponse &&
                   userTypeResponse.userType === 'administratzailea'
                 ) {
-                  this.router.navigate(['/admin']);
+                  this.router.navigate(['/god-admin']);
                 } else {
                   this.messageService.add({
                     severity: 'error',

@@ -28,11 +28,16 @@ export class IkasleIrakasleCardComponent {
       
       return;
     }
-    this.router.navigate([`/god/edit/${id}`]);
+    this.router.navigate([`/god-admin/edit/${id}`]);
   }
 
   deleteUser(id: number | undefined) {
-    this.router.navigate([`/god/delete/${id}`]);
+    if (this.getLoggedInUser().id === id) {
+      
+      return;
+    }
+    
+    
   }
 
 }

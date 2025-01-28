@@ -15,7 +15,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { definePreset } from '@primeng/themes';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,6 +28,7 @@ export const appConfig: ApplicationConfig = {
         preset: Aura,
         options: {
           darkModeSelector: '.my-app-dark',
+          
         },
       },
     }),

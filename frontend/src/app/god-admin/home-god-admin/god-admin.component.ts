@@ -7,11 +7,13 @@ import { AuthService } from '../../services/auth.service';
 import { DividerModule } from 'primeng/divider';
 import { IkasleIrakasleCardComponent } from '../ikasle-irakasle-card/ikasle-irakasle-card/ikasle-irakasle-card.component';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
+import { LoadingComponent } from "../../loading-spinner/loading/loading.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-god-admin',
   standalone: true,
-  imports: [CardModule, PhotosPipe, CommonModule, DividerModule, IkasleIrakasleCardComponent],
+  imports: [CardModule, PhotosPipe, CommonModule, DividerModule, IkasleIrakasleCardComponent, LoadingComponent],
   templateUrl: './god-admin.component.html',
   styleUrl: './god-admin.component.css'
 })
@@ -21,7 +23,7 @@ export class GodAdminComponent {
   ikasleak: IUser[] = [];
   irakasleak: IUser[] = [];
 
-  constructor(private authService: AuthService, private hezkuntzaService: HezkuntzaService) {}
+  constructor(private authService: AuthService, private hezkuntzaService: HezkuntzaService, private router: Router) {}
 
   ngOnInit() {
     this.getLoggedUser();
@@ -53,5 +55,9 @@ export class GodAdminComponent {
     this.hezkuntzaService.getAllIrakasleak().subscribe((response: IUser[]) => {
       this.irakasleak = response;
     });
+  }
+
+  addUser() {
+    this.router.navigate(['/god-admin/add']);
   }
 }

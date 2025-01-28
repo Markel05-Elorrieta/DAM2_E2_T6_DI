@@ -56,8 +56,8 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'admin',
-    title: 'Admin',
+    path: 'god-admin',
+    title: 'God / Admin',
     children: [
       {
         path: '',
@@ -65,43 +65,22 @@ export const routes: Routes = [
         redirectTo: 'home',
       },
       {
-        title: 'Home - Admin - JEM SchoolsApp',
+        title: 'Home - God/Admin - JEM SchoolsApp',
         path: 'home',
         component: GodAdminComponent,
       },
       {
-        title: 'Meeting - Admin - JEM SchoolsApp',
-        path: 'meeting/:id',
-        component: BilerakComponent,
-      }
-    ],
-  },
-  {
-    path: 'god',
-    title: 'God',
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'home',
-      },
-      {
-        title: 'Home - God - JEM SchoolsApp',
-        path: 'home',
-        component: GodAdminComponent,
-      },
-      {
-        title: 'Meeting - God - JEM SchoolsApp',
+        title: 'Meeting - God/Admin - JEM SchoolsApp',
         path: 'meeting/:id',
         component: BilerakComponent,
       },
       {
-        title: 'Add User - God - JEM SchoolsApp',
+        title: 'Add User - God/Admin - JEM SchoolsApp',
         path: 'add',
         component: EditatuGehituComponent,
       },
       {
-        title: 'Edit User - God - JEM SchoolsApp',
+        title: 'Edit User - God/Admin - JEM SchoolsApp',
         path: 'edit/:id',
         component: EditatuGehituComponent,
       }
