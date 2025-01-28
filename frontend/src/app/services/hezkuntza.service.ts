@@ -20,33 +20,74 @@ export class HezkuntzaService {
 
   getAllIrakasleak(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(environment.APIUrl + '/teachers');
-  } 
+  }
 
   getIkasleOrdutegia(userId: number): Observable<IOrdutegia> {
-    return this.httpClient.get<IOrdutegia>(environment.APIUrl + '/timetable-ikasle/' + userId);
+    return this.httpClient.get<IOrdutegia>(
+      environment.APIUrl + '/timetable-ikasle/' + userId
+    );
   }
 
   getIrakasleOrdutegia(userId: number): Observable<IOrdutegia> {
-    return this.httpClient.get<IOrdutegia>(environment.APIUrl + '/timetable-irakasle/' + userId);
+    return this.httpClient.get<IOrdutegia>(
+      environment.APIUrl + '/timetable-irakasle/' + userId
+    );
   }
 
   getIkasleBilerak(userId: number): Observable<IReunionesAlumno> {
-    return this.httpClient.get<IReunionesAlumno>(environment.APIUrl + '/meetings-student/' + userId);
+    return this.httpClient.get<IReunionesAlumno>(
+      environment.APIUrl + '/meetings-student/' + userId
+    );
   }
 
   getIrakasleBilerak(userId: number): Observable<IReunionesProfesor> {
-    return this.httpClient.get<IReunionesProfesor>(environment.APIUrl + '/meetings-teacher/' + userId);
+    return this.httpClient.get<IReunionesProfesor>(
+      environment.APIUrl + '/meetings-teacher/' + userId
+    );
   }
 
   getIkasleBileraByID(bileraID: number): Observable<IReunionesAlumno> {
-    return this.httpClient.get<IReunionesAlumno>(environment.APIUrl + '/meeting-student/' + bileraID);
+    return this.httpClient.get<IReunionesAlumno>(
+      environment.APIUrl + '/meeting-student/' + bileraID
+    );
   }
 
   getIrakasleBileraByID(bileraID: number): Observable<IReunionesProfesor> {
-    return this.httpClient.get<IReunionesProfesor>(environment.APIUrl + '/meeting-teacher/' + bileraID);
+    return this.httpClient.get<IReunionesProfesor>(
+      environment.APIUrl + '/meeting-teacher/' + bileraID
+    );
   }
 
   getIkastetxeak(): Observable<IIkastetxeak> {
-    return this.httpClient.get<IIkastetxeak>(environment.IkastetxeakAPIUrl + '/IKASTETXEAK/');
+    return this.httpClient.get<IIkastetxeak>(
+      environment.IkastetxeakAPIUrl + '/IKASTETXEAK/'
+    );
+  }
+
+  updateUser(user: IUser): Observable<IUser> {
+    const {
+      id,
+      nombre,
+      apellidos,
+      email,
+      telefono1,
+      username,
+      dni,
+      tipo_id: role,
+      direccion,
+    } = user;
+    return this.httpClient.post<IUser>(
+      `${environment.APIUrl}/user-update/${id}`,
+      {
+        nombre,
+        apellidos,
+        email,
+        telefono1,
+        username,
+        dni,
+        role,
+        direccion,
+      }
+    );
   }
 }

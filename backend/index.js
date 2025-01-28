@@ -61,13 +61,52 @@ app.get("/user-type/:userId", (req, res) => {
   });
 });
 
+app.get("/user/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const query = "SELECT * FROM users WHERE id = ?";
+  db.query(query, [userId], (err, results) => {
+    if (err) throw err;
+    if (results.length > 0) {
+      res.send(results[0]);
+    } else {
+      res.send({ message: "User not found" });
+    }
+  });
+});
+
+app.post("/user-update/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const { nombre, apellidos, email, telefono1, username, dni, role, direccion } =
+    req.body;
+  const query =
+    "UPDATE users SET nombre = ?, apellidos = ?, email = ?, telefono1 = ?, username = ?, dni = ?, tipo_id = ?, direccion = ? WHERE id = ?";
+  db.query(
+    query,
+    [
+      nombre,
+      apellidos,
+      email,
+      telefono1,
+      username,
+      dni,
+      role,
+      direccion,
+      userId,
+    ],
+    (err, results) => {
+      if (err) throw err;
+      res.send({ success: true });
+    }
+  );
+});
+
 app.get("/timetable-ikasle/:userId", (req, res) => {
   const userId = req.params.userId;
   const query = `
         SELECT 
-    h.dia AS Dia,
-    h.hora AS Hora,
-    m.nombre AS Modulo
+    h.dia AS dia,
+    h.hora AS hora,
+    m.nombre AS modulo
 FROM 
     horarios h
 JOIN 

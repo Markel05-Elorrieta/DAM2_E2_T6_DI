@@ -27,6 +27,10 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user')!);
   }
 
+  getUserInfoByID(userId: number): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${environment.APIUrl}/user/${userId}`);
+  }
+
   logout() {
     localStorage.removeItem('user');
   }
