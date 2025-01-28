@@ -32,7 +32,7 @@ export class HomeIkasleComponent {
   user: IUser | undefined;
   schedule: IOrdutegia[] = [];
   bilerak: any[] = [];
-  hours: number[] = [1, 2, 3, 4, 5]; // Update based on your time slots
+  hours = ['1', '2', '3', '4', '5']; // Update based on your time slots
 
   getLoggedUser() {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -46,11 +46,11 @@ export class HomeIkasleComponent {
 
   getTimetableIkasle() {
     if (this.user) {
-      this.hezkuntzaService.getIkasleOrdutegia(this.user.id).subscribe(
-        (response: IOrdutegia) => {
+      this.hezkuntzaService
+        .getIkasleOrdutegia(this.user.id)
+        .subscribe((response: IOrdutegia) => {
           this.schedule.push(response);
-        }
-      );
+        });
     }
   }
 
@@ -64,10 +64,22 @@ export class HomeIkasleComponent {
     }
   }
 
-  findModule(day: string, hour: number): string {
-    const entry = this.schedule.find(
-      (item: any) => item.dia === day && item.hora === hour.toString()
-    );
-    return entry ? entry.modulo : '';
+  findModule(day: string, hour: string): string {
+    console.log(`Searching for day: "${day}", hour: "${hour}"`);
+    console.log('Full Schedule:', this.schedule);
+  
+    // Access the first element of the schedule array
+    const scheduleArray = this.schedule[0];
+  
+    if (!Array.isArray(scheduleArray)) {
+      console.error('Schedule data is not an array:', scheduleArray);
+      return ''; // Return empty if the data structure is unexpected
+    }
+  
+    // Find the matching module
+    const module = scheduleArray.find(s => s.dia === day && s.hora === hour);
+    const aux = module ? module.modulo : '';
+    console.log(`Result for day: "${day}", hour: "${hour}" -> "${aux}"`);
+    return aux;
   }
 }
