@@ -20,6 +20,10 @@ export class AuthService {
     return this.httpClient.get<any>(`${environment.APIUrl}/user-type/${userId}`);
   }
 
+  deleteUser(userId: number): Observable<{ success: boolean }> {
+    return this.httpClient.delete<{ success: boolean }>(`${environment.APIUrl}/user-delete/${userId}`);
+  }
+
   getAllUserTypes(): Observable<IUserTypes[]> {
     return this.httpClient.get<IUserTypes[]>(`${environment.APIUrl}/user-types/`);
   }

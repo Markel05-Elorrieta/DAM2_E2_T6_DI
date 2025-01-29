@@ -46,8 +46,6 @@ export class EditatuGehituComponent {
     private authService: AuthService,
     private hezkuntzaService: HezkuntzaService
   ) 
-  
-  
   {
     this.formGroup = new FormGroup({
       username: new FormControl(''),
@@ -62,13 +60,10 @@ export class EditatuGehituComponent {
     });
   }
   
-
   ngOnInit() {
     this.userID = this.route.snapshot.params['id'];
     this.getUserTypes();
     this.getUserInfo();
-
-
   }
 
   getUserInfo() {
@@ -89,7 +84,7 @@ export class EditatuGehituComponent {
           });
         },
         (error: any) => {
-          console.error('Error loading user info:', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error loading user info!', life: 4500 });
         }
       );
     }
@@ -112,8 +107,7 @@ export class EditatuGehituComponent {
   }
 
   onSubmit() {
-    
-    if (this.userID) {
+    if (this.userID !== undefined) {
       // Edit existing user
       if (this.formGroup.dirty && this.formGroup.valid) {
         const updatedUser: IUser = {
@@ -190,8 +184,7 @@ export class EditatuGehituComponent {
           life: 4500,
         });
       }
-    }
-      
+    }  
   }
 
   goBack() {

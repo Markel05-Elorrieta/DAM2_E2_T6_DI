@@ -12,6 +12,7 @@ import { PhotosPipe } from '../../pipes/photos.pipe';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { IOrdutegia } from '../../interfaces/IOrdutegia';
 import { IReunionesProfesor } from '../../interfaces/IReunionesProfesor';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-irakasle',
@@ -26,6 +27,7 @@ import { IReunionesProfesor } from '../../interfaces/IReunionesProfesor';
     BilerakCardComponent,
     PhotosPipe,
     PanelModule,
+    FormsModule,
   ],
   templateUrl: './home-irakasle.component.html',
   styleUrl: './home-irakasle.component.css',
@@ -33,12 +35,14 @@ import { IReunionesProfesor } from '../../interfaces/IReunionesProfesor';
 export class HomeIrakasleComponent {
   title = 'HezkuntzaErronka2';
 
-  searchQuery: string = '';
-  filteredStudents: any[] = [];
+  searchQueryStudent: string = '';
+  filteredStudents: IUser[] = [];
+  students: IUser[] = [];
   user: IUser | undefined;
   schedule: IOrdutegia[] = [];
   bilerak: IReunionesProfesor[] = [];
-  hours = ['1', '2', '3', '4', '5']; // Update based on your time slots
+  hours = ['1', '2', '3', '4', '5'];
+  searchForm: any;
 
   constructor(private hezkuntzaService: HezkuntzaService) {}
 
@@ -46,8 +50,7 @@ export class HomeIrakasleComponent {
     this.getLoggedUser();
     this.getTimetableIrakasle();
     this.getIrakasleBilerak();
-    console.log(this.schedule);
-    
+    this.getIkasleak();
   }
 
   getLoggedUser() {
@@ -68,37 +71,42 @@ export class HomeIrakasleComponent {
 
   getIrakasleBilerak() {
     if (this.user) {
-      this.hezkuntzaService.getIrakasleBilerak(this.user.id).subscribe(
-        (response: any) => {
-          console.log(response);
+      this.hezkuntzaService
+        .getIrakasleBilerak(this.user.id)
+        .subscribe((response: any) => {
           this.bilerak = response;
-        }
-      );
+        });
     }
   }
 
+  getIkasleak() {
+    this.hezkuntzaService.getAllIkasleak().subscribe((response: IUser[]) => {
+      this.students = response;
+    });
+  }
+
   findModule(day: string, hour: string): string {
-    console.log(`Searching for day: "${day}", hour: "${hour}"`);
-    console.log('Full Schedule:', this.schedule);
-  
-    // Access the first element of the schedule array
     const scheduleArray = this.schedule[0];
-  
+
     if (!Array.isArray(scheduleArray)) {
-      console.error('Schedule data is not an array:', scheduleArray);
-      return ''; // Return empty if the data structure is unexpected
+      return '';
     }
-  
-    // Find the matching module
-    const module = scheduleArray.find(s => s.dia === day && s.hora === hour);
-    const aux = module ? module.modulo : '';
-    console.log(`Result for day: "${day}", hour: "${hour}" -> "${aux}"`);
+
+    const module = scheduleArray.find((s) => s.dia === day && s.hora === hour);
+    const aux = module ? module.modulo : '-';
     return aux;
   }
 
   searchStudents() {
-    console.log(this.searchQuery);
+    const query = this.searchQueryStudent.trim().toLowerCase();
+    if (query === '') {
+      this.getIkasleak();
+    } else {
+      this.students = this.students.filter((student) =>
+        student.nombre.toLowerCase().includes(query) ||
+        student.dni.toLowerCase().includes(query) ||
+        student.apellidos.toLowerCase().includes(query)
+      );
+    }
   }
-
-
 }

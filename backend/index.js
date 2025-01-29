@@ -150,6 +150,15 @@ app.post("/user-add/", (req, res) => {
   );
 });
 
+app.delete("/user-delete/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const query = "DELETE FROM users WHERE id = ?";
+  db.query(query, [userId], (err, results) => {
+    if (err) throw err;
+    res.send({ success: true });
+  });
+});
+
 app.get("/timetable-ikasle/:userId", (req, res) => {
   const userId = req.params.userId;
   const query = `
