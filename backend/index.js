@@ -63,7 +63,7 @@ app.get("/user-type/:userId", (req, res) => {
 
 app.get("/user/:userId", (req, res) => {
   const userId = req.params.userId;
-  const query = "SELECT * FROM users WHERE id = ?";
+  const query = "SELECT * FROM users u WHERE u.id = ?";
   db.query(query, [userId], (err, results) => {
     if (err) throw err;
     if (results.length > 0) {

@@ -37,6 +37,7 @@ export class EditatuGehituComponent {
   userID: number | undefined;
 
   roles: IUserTypes[] = [];
+  rolesName : string[] = [];
 
   constructor(
     private messageService: MessageService,
@@ -44,23 +45,30 @@ export class EditatuGehituComponent {
     private route: ActivatedRoute,
     private authService: AuthService,
     private hezkuntzaService: HezkuntzaService
-  ) {
+  ) 
+  
+  
+  {
     this.formGroup = new FormGroup({
-      username: new FormControl(this.user?.username),
-      nombre: new FormControl(this.user?.nombre),
-      apellidos: new FormControl(this.user?.apellidos),
-      phone: new FormControl(this.user?.telefono1),
-      dni: new FormControl(this.user?.dni),
-      address: new FormControl(this.user?.direccion),
-      email: new FormControl(this.user?.email),
-      role: new FormControl(this.user?.tipo_id),
-      password: new FormControl(this.user?.password),
+      username: new FormControl(''),
+      nombre: new FormControl(''),
+      apellidos: new FormControl(''),
+      phone: new FormControl(''),
+      dni: new FormControl(''),
+      address: new FormControl(''),
+      email: new FormControl(''),
+      role: new FormControl(''),
+      password: new FormControl(''),
     });
   }
+  
 
   ngOnInit() {
     this.userID = this.route.snapshot.params['id'];
+    this.getUserTypes();
     this.getUserInfo();
+
+
   }
 
   getUserInfo() {
@@ -77,7 +85,7 @@ export class EditatuGehituComponent {
             address: this.user.direccion,
             email: this.user.email,
             password: this.user.password,
-            role: this.getRoleByTipoId(this.user.tipo_id),
+            role: this.getUserType(),
           });
         },
         (error: any) => {
@@ -91,6 +99,7 @@ export class EditatuGehituComponent {
     this.authService.getAllUserTypes().subscribe(
       (response: IUserTypes[]) => {
         this.roles = response;
+        this.rolesName = response.map((role) => role.name);
       },
       (error: any) => {
         console.error('Error loading user types:', error);
@@ -98,7 +107,12 @@ export class EditatuGehituComponent {
     );
   }
 
+  getUserType() {
+    return this.roles.find((role) => role.id === this.user?.tipo_id)?.name;
+  }
+
   onSubmit() {
+    
     if (this.userID) {
       // Edit existing user
       if (this.formGroup.dirty && this.formGroup.valid) {
@@ -106,8 +120,8 @@ export class EditatuGehituComponent {
           ...this.user,
           ...this.formGroup.value,
           tipo_id: this.roles.find(
-            (role) => role.value === this.formGroup.value.role
-          )?.tipo_id,
+            (role) => role.name === this.formGroup.value.role
+          )?.id
         };
 
         this.hezkuntzaService.updateUser(updatedUser).subscribe(
@@ -118,7 +132,7 @@ export class EditatuGehituComponent {
               detail: 'User updated successfully!',
               life: 4500,
             });
-            this.router.navigate(['/god']);
+            this.router.navigate(['/god-admin']);
           },
           (error: any) => {
             this.messageService.add({
@@ -144,8 +158,8 @@ export class EditatuGehituComponent {
         const newUser: IUser = {
           ...this.formGroup.value,
           tipo_id: this.roles.find(
-            (role) => role.value === this.formGroup.value.role
-          )?.tipo_id,
+            (role) => role.name === this.formGroup.value.role
+          )?.id,
         };
 
         this.hezkuntzaService.addUser(newUser).subscribe(
@@ -156,7 +170,7 @@ export class EditatuGehituComponent {
               detail: 'User added successfully!',
               life: 4500,
             });
-            this.router.navigate(['/god']);
+            this.router.navigate(['/god-admin']);
           },
           (error: any) => {
             this.messageService.add({
@@ -177,6 +191,7 @@ export class EditatuGehituComponent {
         });
       }
     }
+      
   }
 
   goBack() {
