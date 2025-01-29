@@ -74,6 +74,14 @@ app.get("/user/:userId", (req, res) => {
   });
 });
 
+app.get("/user-types", (req, res) => {
+  const query = "SELECT * FROM tipos";
+  db.query(query, (err, results) => {
+    if (err) throw err;
+    res.send(results);
+  });
+});
+
 app.post("/user-update/:userId", (req, res) => {
   const userId = req.params.userId;
   const {

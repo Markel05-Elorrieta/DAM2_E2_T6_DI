@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/IUser';
 import { Observable } from 'rxjs/internal/Observable';
+import { IUserTypes } from '../interfaces/IUserTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class AuthService {
 
   getUserType(userId: number): Observable<{ userType: String }> {
     return this.httpClient.get<any>(`${environment.APIUrl}/user-type/${userId}`);
+  }
+
+  getAllUserTypes(): Observable<IUserTypes[]> {
+    return this.httpClient.get<IUserTypes[]>(`${environment.APIUrl}/user-types/`);
   }
 
   saveUser(user: IUser) {

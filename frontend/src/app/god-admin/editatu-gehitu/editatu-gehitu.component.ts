@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 import { ToastModule } from 'primeng/toast';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { RouterLink } from '@angular/router';
+import { IUserTypes } from '../../interfaces/IUserTypes';
 
 @Component({
   selector: 'app-editatu-gehitu',
@@ -35,19 +36,7 @@ export class EditatuGehituComponent {
   formGroup: FormGroup;
   userID: number | undefined;
 
-  roles = [
-    { label: 'Admin', value: '2', tipo_id: 2 },
-    { label: 'Teacher', value: '3', tipo_id: 3 },
-    { label: 'Student', value: '4', tipo_id: 4 },
-    { label: 'God', value: '1', tipo_id: 1 },
-  ];
-
-  status = [
-    { label: 'Pendiente', value: 'pendiente' },
-    { label: 'Aceptada', value: 'aceptada' },
-    { label: 'Denegada', value: 'denegada' },
-    { label: 'Conflicto', value: 'conflicto' },
-  ];
+  roles: IUserTypes[] = [];
 
   constructor(
     private messageService: MessageService,
@@ -98,9 +87,15 @@ export class EditatuGehituComponent {
     }
   }
 
-  getRoleByTipoId(tipo_id: number | undefined): string | undefined {
-    const role = this.roles.find((role) => role.tipo_id === tipo_id);
-    return role ? role.value : undefined;
+  getUserTypes() {
+    this.authService.getAllUserTypes().subscribe(
+      (response: IUserTypes[]) => {
+        this.roles = response;
+      },
+      (error: any) => {
+        console.error('Error loading user types:', error);
+      }
+    );
   }
 
   onSubmit() {
