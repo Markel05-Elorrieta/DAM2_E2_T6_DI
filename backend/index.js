@@ -14,7 +14,7 @@ const db = mysql.createConnection({
   host: "52.47.82.98", // MySQL zerbitzariaren helbidea
   user: "adminElorbase", // MySQL erabiltzailea
   password: "jemsoftware1234", // MySQL pasahitza
-  database: "elorbase", // Datu-basearen izena
+  database: "elortest", // Datu-basearen izena
   //    port: '3306' , // Portua
 });
 
@@ -335,6 +335,61 @@ where r.id_reunion = ?;`;
       return;
     }
     res.send(results[0]);
+  });
+});
+
+app.get("/meeting-god-admin/:meetingId", (req, res) => {
+  const meetingId = req.params.meetingId;
+  const query = `select 
+    r.id_reunion as id,
+    r.estado as estado, 
+    r.titulo as titulo, 
+    r.asunto as asunto, 
+    r.aula as aula, 
+    r.fecha as fecha, 
+    r.id_centro as id_centro,
+    up.nombre as nombre_profesor,
+    up.apellidos as apellidos_profesor,
+    ua.nombre as nombre_alumno,
+    ua.nombre as apellidos_alumno
+from reuniones r
+join users up on r.profesor_id = up.id
+join users ua on r.alumno_id = ua.id
+where r.id_reunion = ?;`;
+  db.query(query, [meetingId], (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results[0]);
+  });
+});
+
+app.get("/meetings-today/", (req, res) => {
+  const query = `select 
+    r.id_reunion as id,
+    r.estado as estado, 
+    r.titulo as titulo, 
+    r.asunto as asunto, 
+    r.aula as aula, 
+    r.fecha as fecha, 
+    r.id_centro as id_centro,
+    up.nombre as nombre_profesor,
+    up.apellidos as apellidos_profesor,
+    ua.nombre as nombre_alumno,
+    ua.nombre as apellidos_alumno
+from reuniones r
+join users up on r.profesor_id = up.id
+join users ua on r.alumno_id = ua.id
+WHERE DATE(r.fecha) = CURRENT_DATE;`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Errorea datu-basera konektatzean:", err);
+      res.status(500).send("Errorea datu-basera konektatzean");
+      return;
+    }
+    res.send(results);
   });
 });
 

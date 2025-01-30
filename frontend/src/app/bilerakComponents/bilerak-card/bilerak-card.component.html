@@ -11,20 +11,20 @@
         }"
         class="inline-block text-xs uppercase border p-1 mt-2 mx-auto"
       >
-        {{ bilera.estado }}
+        {{ bilera.estado | translate }}
       </p>
     </ng-template>
     <ng-template pTemplate="content">
       <p>
-        <strong>Asunto: </strong>
+        <strong>{{ 'bilerak.subject' | translate }}: </strong>
         {{ bilera.asunto }}
       </p>
       <p>
-        <strong>Fecha y hora: </strong>
+        <strong>{{ 'bilerak.dateAndTime' | translate }}: </strong>
         {{ bilera.fecha | date:'dd/MM/yyyy - HH:mm' }}h
       </p>
       <p>
-        <strong>Aula: </strong>
+        <strong>{{ 'bilerak.classroom' | translate }}: </strong>
         {{ bilera.aula }}
       </p>
     </ng-template>
@@ -32,7 +32,7 @@
       <button
         pButton
         type="button"
-        label="Ver detalles"
+        label="{{ 'viewDetails' | translate }}"
         icon="pi pi-info-circle"
         class="mt-3"
         [routerLink]="[baseRoute, bilera.id]"

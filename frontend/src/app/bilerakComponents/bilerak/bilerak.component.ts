@@ -8,11 +8,13 @@ import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { Router, RouterLink } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import { IIkastetxeak } from '../../interfaces/IIkastetxeak';
+import { IReunionesGeneral } from '../../interfaces/IReunionesGeneral';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bilerak',
   standalone: true,
-  imports: [CardModule, CommonModule, RouterLink],
+  imports: [CardModule, CommonModule, RouterLink, TranslateModule],
   templateUrl: './bilerak.component.html',
   styleUrl: './bilerak.component.css',
 })
@@ -20,6 +22,7 @@ export class BilerakComponent {
   title = 'HezkuntzaErronka2';
   bilerakAlumno: IReunionesAlumno | undefined;
   bilerakProfesor: IReunionesProfesor | undefined;
+  bilerakGodAdmin: IReunionesGeneral | undefined;
   bileraID: number | undefined;
   ikastetxea: IIkastetxeak | undefined;
   filteredIkastetxea: IIkastetxeak | undefined;
@@ -36,13 +39,15 @@ export class BilerakComponent {
     const url = this.router.url;
     if (url.includes('teachers')) {
       this.returnRoute = '/teachers';
-    } else {
+    } else if (url.includes('students')) {
       this.returnRoute = '/students';
+    } else {
+      this.returnRoute = '/god-admin';
     }
 
     this.bileraID = this.activatedRoute.snapshot.params['id'];
     this.getBilera();
-    this.getIkastetxeak();
+    //this.getIkastetxeak();
     this.addMarkerBilera();
 
     this.map = new mapboxgl.Map({
@@ -61,37 +66,59 @@ export class BilerakComponent {
       if (url.includes('teachers')) {
         this.hezkuntzaService
           .getIrakasleBileraByID(this.bileraID)
-          .subscribe((data) => {
+          .subscribe((data: IReunionesProfesor) => {
             this.bilerakProfesor = data;
           });
       } else if (url.includes('students')) {
         this.hezkuntzaService
           .getIkasleBileraByID(this.bileraID)
-          .subscribe((data) => {
+          .subscribe((data: IReunionesAlumno) => {
             this.bilerakAlumno = data;
+          });
+      } else {
+        this.hezkuntzaService
+          .getGodAdminBileraByID(this.bileraID)
+          .subscribe((data: IReunionesGeneral) => {
+            this.bilerakGodAdmin = data;
           });
       }
     }
   }
 
-  getIkastetxeak() {
-    this.hezkuntzaService.getIkastetxeak().subscribe((data) => {
-      this.ikastetxea = data;
-    });
-    this.filterIkastetxeakByCodCentro();
-  }
-
-  filterIkastetxeakByCodCentro() {
-    if (this.ikastetxea) {
-      return this.ikastetxea.filter(
-        (ikastetxea) => ikastetxea.CCEN === this.bilerakAlumno?.id_centro
+  /*getIkastetxeak() {
+    if (this.bilerakAlumno) {
+      this.hezkuntzaService.getIkasleBileraByID(this.bilerakAlumno.id_centro).subscribe(
+        (data: IIkastetxeak) => {
+          this.ikastetxea = data;
+        },
+        (error: any) => {
+          console.log('Error loading ikastetxea info!');
+        }
+      );
+    } else if (this.bilerakProfesor) {
+      this.hezkuntzaService.getIkasleBileraByID(this.bilerakProfesor.id_centro).subscribe(
+        (data: IIkastetxeak) => {
+          this.ikastetxea = data;
+        },
+        (error: any) => {
+          console.log('Error loading ikastetxea info!');
+        }
+      );
+    } else {
+      if (this.bilerakGodAdmin?.id_centro !== undefined) {
+        this.hezkuntzaService.getIkasleBileraByID(this.bilerakGodAdmin.id_centro).subscribe(
+        (data: IIkastetxeak) => {
+          this.ikastetxea = data;
+        },
+        (error: any) => {
+          console.log('Error loading ikastetxea info!');
+        }
       );
     }
-    return [];
   }
+}*/
 
   addMarkerBilera() {
-    console.log(this.ikastetxea);
     if (this.ikastetxea) {
       new mapboxgl.Marker()
         .setLngLat([this.ikastetxea.LONGITUD, this.ikastetxea.LATITUD])

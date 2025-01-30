@@ -5,7 +5,7 @@ export interface IReunionesGeneral {
     apellidos_alumno: string | null;
     nombre_profesor: string | null;
     apellidos_profesor: string | null;
-    id_centro: string;
+    id_centro: number;
     titulo: string;
     asunto: string;
     aula: string;

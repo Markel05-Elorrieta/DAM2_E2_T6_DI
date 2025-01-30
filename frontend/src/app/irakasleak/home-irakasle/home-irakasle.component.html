@@ -82,7 +82,7 @@
     <div *ngIf="bilerak.length === 0">
       <p class="m-6 text-center">Ez daukazu bilerarik, {{ user?.nombre }}!</p>
     </div>
-    <div *ngIf="bilerak.length > 0">
+    <div class="grid grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
       <div *ngFor="let bilera of bilerak" class="mb-4">
         <app-bilerak-card [bilera]="bilera"></app-bilerak-card>
       </div>
@@ -96,7 +96,7 @@
 <!-- Student Search Section -->
 <div class="grid grid-cols-1 gap-4 p-6">
   <div class="col-span-1">
-    <p-card header="Ikasleak" class="shadow-lg rounded-lg">
+    <p-card header="Ikasleak ({{ students.length }})" class="shadow-lg rounded-lg">
       <form (ngSubmit)="searchStudents()" class="p-6">
         <input
           name="searchQueryStudent"

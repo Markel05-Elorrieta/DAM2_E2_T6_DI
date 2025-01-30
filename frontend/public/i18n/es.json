@@ -1,10 +1,24 @@
 {
-    "login": {
-      "signInToYourAccount": "Inicia sesión en tu cuenta",
-      "email": "Correo electrónico",
-      "password": "Contraseña",
-      "loginButton": "Iniciar sesión",
-      "togglePasswordVisibility": "Ver contraseña",
-      "fillAllFields": "Rellena todos los campos"
-    }
+  "login": {
+    "signInToYourAccount": "Inicia sesión en tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "loginButton": "Iniciar sesión",
+    "togglePasswordVisibility": "Ver contraseña",
+    "fillAllFields": "Rellena todos los campos"
+  },
+  "bilerak": {
+    "subject": "Asunto",
+    "dateAndTime": "Fecha y hora",
+    "classroom": "Aula",
+    "teacher": "Profesor",
+    "student": "Alumno",
+    "title": "Título",
+    "status": "Estado",
+    "backToDashboard": "Volver a la dashboard",
+    "meetingInfo": "Bileraren informazioa",
+    "mapLocation": "Mapa · Bileraren kokapena"
+  },
+  "edit": "Editar",
+  "delete": "Eliminar"
 }

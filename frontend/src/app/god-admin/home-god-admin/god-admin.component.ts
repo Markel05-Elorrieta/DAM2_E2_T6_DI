@@ -9,11 +9,13 @@ import { IkasleIrakasleCardComponent } from '../ikasle-irakasle-card/ikasle-irak
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { LoadingComponent } from "../../loading-spinner/loading/loading.component";
 import { Router } from '@angular/router';
+import { IReunionesGeneral } from '../../interfaces/IReunionesGeneral';
+import { BilerakCardComponent } from '../../bilerakComponents/bilerak-card/bilerak-card.component';
 
 @Component({
   selector: 'app-god-admin',
   standalone: true,
-  imports: [CardModule, PhotosPipe, CommonModule, DividerModule, IkasleIrakasleCardComponent, LoadingComponent],
+  imports: [CardModule, PhotosPipe, CommonModule, DividerModule, IkasleIrakasleCardComponent, LoadingComponent, BilerakCardComponent],
   templateUrl: './god-admin.component.html',
   styleUrl: './god-admin.component.css'
 })
@@ -22,6 +24,7 @@ export class GodAdminComponent {
   userType: String | undefined;
   ikasleak: IUser[] = [];
   irakasleak: IUser[] = [];
+  bilerak: IReunionesGeneral[] = [];
 
   constructor(private authService: AuthService, private hezkuntzaService: HezkuntzaService, private router: Router) {}
 
@@ -30,6 +33,7 @@ export class GodAdminComponent {
     this.getUserType();
     this.getAllIkasleak();
     this.getAllIrakasleak();
+    this.getAllBilerakToday();
   }
 
   getLoggedUser() {
@@ -43,6 +47,12 @@ export class GodAdminComponent {
         this.userType = response.userType;
       }
     );
+  }
+
+  getAllBilerakToday() {
+    this.hezkuntzaService.getTodayBilerak().subscribe((response: IReunionesGeneral[]) => {
+      this.bilerak = response;
+    });
   }
 
   getAllIkasleak() {

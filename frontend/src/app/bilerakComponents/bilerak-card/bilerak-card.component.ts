@@ -5,16 +5,18 @@ import { Router, RouterLink } from '@angular/router';
 import { IReunionesAlumno } from '../../interfaces/IReunionesAlumno';
 import { IReunionesProfesor } from '../../interfaces/IReunionesProfesor';
 import { ButtonModule } from 'primeng/button';
+import { IReunionesGeneral } from '../../interfaces/IReunionesGeneral';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bilerak-card',
   standalone: true,
-  imports: [CardModule, RouterLink, ButtonModule, CommonModule],
+  imports: [CardModule, RouterLink, ButtonModule, CommonModule, TranslateModule],
   templateUrl: './bilerak-card.component.html',
   styleUrl: './bilerak-card.component.css'
 })
 export class BilerakCardComponent {
-  @Input() bilera!: IReunionesAlumno | IReunionesProfesor;
+  @Input() bilera!: IReunionesAlumno | IReunionesProfesor | IReunionesGeneral;
   baseRoute: string;
 
   constructor(private router: Router) {
@@ -24,7 +26,7 @@ export class BilerakCardComponent {
     } else if (url.includes('students')) {
       this.baseRoute = '/students/meeting';
     } else {
-      this.baseRoute = '/meeting';
+      this.baseRoute = '/god-admin/meeting';
     }
   }
 }

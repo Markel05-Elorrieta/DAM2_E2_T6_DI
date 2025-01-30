@@ -7,6 +7,7 @@ import { IReunionesAlumno } from '../interfaces/IReunionesAlumno';
 import { IReunionesProfesor } from '../interfaces/IReunionesProfesor';
 import { IIkastetxeak } from '../interfaces/IIkastetxeak';
 import { IUser } from '../interfaces/IUser';
+import { IReunionesGeneral } from '../interfaces/IReunionesGeneral';
 
 @Injectable({
   providedIn: 'root',
@@ -58,11 +59,28 @@ export class HezkuntzaService {
     );
   }
 
-  getIkastetxeak(): Observable<IIkastetxeak> {
-    return this.httpClient.get<IIkastetxeak>(
+  getGodAdminBileraByID(bileraID: number): Observable<IReunionesGeneral> {
+    return this.httpClient.get<IReunionesGeneral>(
+      environment.APIUrl + '/meeting-god-admin/' + bileraID
+    );
+  }
+
+  getTodayBilerak(): Observable<IReunionesGeneral[]> {
+    return this.httpClient.get<IReunionesGeneral[]>(
+      environment.APIUrl + '/meetings-today/'
+    );
+  }
+
+  getIkastetxeak(): Observable<IIkastetxeak[]> {
+    return this.httpClient.get<IIkastetxeak[]>(
       environment.IkastetxeakAPIUrl + '/IKASTETXEAK/'
     );
   }
+
+  /*filterIkastetxeaByID(id: number): Promise<IIkastetxeak> {
+    const ikastetxeak = this.getIkastetxeak();
+    return ikastetxeak.find((ikastetxe) => ikastetxe.CCEN === id);
+  }*/
 
   updateUser(user: IUser): Observable<IUser> {
     const {
