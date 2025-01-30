@@ -1,12 +1,12 @@
 <div class="mr-5 mt-4">
-  <h1 class="text-4xl font-bold text-center">Irakaslearen espazioa</h1>
+  <h1 class="text-4xl font-bold text-center">{{ 'home-irakasle.teacherSpace' | translate }}</h1>
 </div>
 
 <!-- First Row: User Data and Schedule -->
 <div class="grid grid-cols-2 gap-4 p-6">
   <!-- User Data Section -->
   <div class="col-span-1">
-    <p-card header="Irakaslearen datuak" class="shadow-lg rounded-lg">
+    <p-card header="{{ 'home-irakasle.teacherData' | translate }}" class="shadow-lg rounded-lg">
       <div class="flex items-center p-6">
         <img
           [src]="user?.argazkia | photosPipe"
@@ -17,23 +17,23 @@
           <p class="font-bold text-5xl mb-5">
             {{ user?.nombre }} {{ user?.apellidos }}
           </p>
-          <p class="text-gray-400 text-lg">E-mail: {{ user?.email }}</p>
+          <p class="text-gray-400 text-lg">{{ 'home-irakasle.email' | translate }}: {{ user?.email }}</p>
         </div>
       </div>
       <p-divider type="solid" />
       <div class="p-6 space-y-4">
-        <h1 class="text-2xl font-bold text-center">Información personal</h1>
+        <h1 class="text-2xl font-bold text-center">{{ 'home-irakasle.personalInfo' | translate }}</h1>
         <p class="text-lg">
-          <span class="font-semibold">Dirección:</span> {{ user?.direccion }}
+          <span class="font-semibold">{{ 'home-irakasle.address' | translate }}:</span> {{ user?.direccion }}
         </p>
         <p *ngIf="user?.telefono1" class="text-lg">
-          <span class="font-semibold">Teléfono 1:</span> {{ user?.telefono1 }}
+          <span class="font-semibold">{{ 'home-irakasle.phone1' | translate }}:</span> {{ user?.telefono1 }}
         </p>
         <p *ngIf="user?.telefono2" class="text-lg">
-          <span class="font-semibold">Teléfono 2:</span> {{ user?.telefono2 }}
+          <span class="font-semibold">{{ 'home-irakasle.phone2' | translate }}:</span> {{ user?.telefono2 }}
         </p>
         <p class="text-lg">
-          <span class="font-semibold">DNI:</span> {{ user?.dni }}
+          <span class="font-semibold">{{ 'home-irakasle.dni' | translate }}:</span> {{ user?.dni }}
         </p>
       </div>
     </p-card>
@@ -41,19 +41,19 @@
 
   <!-- Schedule Section -->
   <div class="col-span-1">
-    <p-card header="Ordutegia" class="shadow-lg rounded-lg">
+    <p-card header="{{ 'home-irakasle.schedule' | translate }}" class="shadow-lg rounded-lg">
       @if (!schedule) {
-      <p class="mt-3 text-center">Ez dago ordutegirik eskuragarri.</p>
+      <p class="mt-3 text-center">{{ 'home-irakasle.noSchedule' | translate }}</p>
       } @else {
       <p-table showGridlines [value]="[schedule]" class="p-1">
         <ng-template pTemplate="header">
           <tr>
             <th></th>
-            <th>Lunes</th>
-            <th>Martes</th>
-            <th>Miércoles</th>
-            <th>Jueves</th>
-            <th>Viernes</th>
+            <th>{{ 'home-irakasle.monday' | translate }}</th>
+            <th>{{ 'home-irakasle.tuesday' | translate }}</th>
+            <th>{{ 'home-irakasle.wednesday' | translate }}</th>
+            <th>{{ 'home-irakasle.thursday' | translate }}</th>
+            <th>{{ 'home-irakasle.friday' | translate }}</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body">
@@ -77,10 +77,10 @@
 
 <!-- Meetings Section -->
 <div class="p-6">
-  <p-card header="Bilerak ({{ bilerak.length }})" class="shadow-lg rounded-lg">
+  <p-card header="{{ 'home-irakasle.meetings' | translate:{count: bilerak.length} }}" class="shadow-lg rounded-lg">
     <!-- BILERAK -->
     <div *ngIf="bilerak.length === 0">
-      <p class="m-6 text-center">Ez daukazu bilerarik, {{ user?.nombre }}!</p>
+      <p class="m-6 text-center">{{ 'home-irakasle.noMeetings' | translate:{name: user?.nombre} }}</p>
     </div>
     <div class="grid grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
       <div *ngFor="let bilera of bilerak" class="mb-4">
@@ -96,20 +96,20 @@
 <!-- Student Search Section -->
 <div class="grid grid-cols-1 gap-4 p-6">
   <div class="col-span-1">
-    <p-card header="Ikasleak ({{ students.length }})" class="shadow-lg rounded-lg">
+    <p-card header="{{ 'home-irakasle.students' | translate:{count: students.length} }}" class="shadow-lg rounded-lg">
       <form (ngSubmit)="searchStudents()" class="p-6">
         <input
           name="searchQueryStudent"
           type="text"
           [(ngModel)]="searchQueryStudent"
-          placeholder="Bilatu ikaslea..."
+          placeholder="{{ 'home-irakasle.searchStudent' | translate }}"
           class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
         />
         <button
           type="submit"
           class="mt-2 ml-2 px-4 py-2 bg-blue-500 text-white transition ease font-semibold rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
         >
-          Bilatu
+          {{ 'home-irakasle.search' | translate }}
         </button>
       </form>
       @if (students.length != 0) {
@@ -120,22 +120,22 @@
               <th
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                NAN
+                {{ 'home-irakasle.dniHeader' | translate }}
               </th>
               <th
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Izena
+                {{ 'home-irakasle.nameHeader' | translate }}
               </th>
               <th
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Abizenak
+                {{ 'home-irakasle.surnameHeader' | translate }}
               </th>
               <th
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Xehetasunak
+                {{ 'home-irakasle.detailsHeader' | translate }}
               </th>
             </tr>
           </ng-template>
@@ -150,7 +150,7 @@
                 <a
                   [routerLink]="['/god-admin/student', student.id]"
                   class="text-blue-500"
-                  >Xehetasunak ikusi</a
+                  >{{ 'home-irakasle.viewDetails' | translate }}</a
                 >
               </td>
             </tr>
@@ -158,7 +158,7 @@
         </p-table>
       </div>
       } @else {
-      <p class="p-6 text-center">Ez daude ikaslerik.</p>
+      <p class="p-6 text-center">{{ 'home-irakasle.noStudents' | translate }}</p>
       }
     </p-card>
   </div>

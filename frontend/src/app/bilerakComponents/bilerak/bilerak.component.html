@@ -10,7 +10,7 @@
       <p class="text-3xl">{{ bilerakGodAdmin.titulo }}</p>
     </ng-template>
     <p class="inline-block text-xs uppercase border p-1 mt-2 mb-4 mx-auto">
-      {{ bilerakGodAdmin.estado }}
+      {{ 'estado.' + bilerakGodAdmin.estado | translate }}
     </p>
     <!-- BILERAK GOD ADMIN -->
     <div class="space-y-4">
@@ -44,7 +44,7 @@
       <p class="text-2xl">{{ bilerakAlumno.titulo }}</p>
     </ng-template>
     <p class="inline-block text-xs uppercase border p-1 mt-2 mb-4 mx-auto">
-      {{ bilerakAlumno.estado }}
+      {{ 'estado.' + bilerakAlumno.estado | translate }}
     </p>
     <!-- BILERAK ALUMNO -->
     <div class="space-y-4">
@@ -74,7 +74,7 @@
         <p class="text-3xl">{{ bilerakProfesor?.titulo }}</p>
       </ng-template>
       <p class="inline-block text-xs uppercase border p-1 mt-2 mb-4 mx-auto">
-        {{ bilerakProfesor?.estado }}
+        {{ 'estado.' + bilerakProfesor?.estado | translate }}
       </p>
       <!-- BILERAK PROFESOR -->
       <div class="space-y-4">

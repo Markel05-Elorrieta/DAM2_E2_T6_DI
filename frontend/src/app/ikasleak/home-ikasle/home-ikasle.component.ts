@@ -9,11 +9,12 @@ import { IOrdutegia } from '../../interfaces/IOrdutegia';
 import { PhotosPipe } from "../../pipes/photos.pipe";
 import { BilerakCardComponent } from '../../bilerakComponents/bilerak-card/bilerak-card.component';
 import { DividerModule } from 'primeng/divider';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-ikasle',
   standalone: true,
-  imports: [CardModule, TableModule, ListboxModule, CommonModule, PhotosPipe, BilerakCardComponent, DividerModule],
+  imports: [CardModule, TableModule, ListboxModule, CommonModule, PhotosPipe, BilerakCardComponent, DividerModule, TranslateModule],
   templateUrl: './home-ikasle.component.html',
   styleUrl: './home-ikasle.component.css'
 })

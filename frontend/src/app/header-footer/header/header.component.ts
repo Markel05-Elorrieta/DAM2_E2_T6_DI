@@ -46,10 +46,10 @@ export class HeaderComponent {
   items: MenuItem[] | undefined;
   loggedUsername: string = '';
 
-  ngOnInit() {
+  async ngOnInit() {
     this.items = [
       {
-        label: 'Kaixo, ' + this.getLoggedUser() + '!',
+        label: await this.getLoggedUserName(),
         items: [
           {
             label: 'Logout',
@@ -80,6 +80,14 @@ export class HeaderComponent {
         element.classList.remove('my-app-dark');
       }
     }
+  }
+
+  async getLoggedUserName(): Promise<string> {
+    if (this.isLoggedIn()) {
+      const fetchedUser = await this.authService.getUser();
+      return fetchedUser.nombre;
+    }
+    return '';
   }
 
   saveDarkModePreference() {

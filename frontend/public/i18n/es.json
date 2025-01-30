@@ -1,4 +1,7 @@
 {
+  "header": {
+    "language": "Cambiar idioma"
+  },
   "login": {
     "signInToYourAccount": "Inicia sesión en tu cuenta",
     "email": "Correo electrónico",
@@ -19,6 +22,104 @@
     "meetingInfo": "Bileraren informazioa",
     "mapLocation": "Mapa · Bileraren kokapena"
   },
+  "estado": {
+    "aceptada": "Aceptada",
+    "denegada": "Denegada",
+    "pendiente": "Pendiente",
+    "conflicto": "Conflicto"
+  },
   "edit": "Editar",
-  "delete": "Eliminar"
+  "delete": "Eliminar",
+  "viewDetails": "Ver detalles",
+  "god-admin": {
+    "godSpace": "Espacio del dios",
+    "adminSpace": "Espacio del administrador",
+    "adminData": "Datos del administrador",
+    "personalInfo": "Información personal",
+    "address": "Dirección",
+    "phone1": "Teléfono 1",
+    "phone2": "Teléfono 2",
+    "dni": "DNI",
+    "addUser": "Añadir usuario",
+    "allStudents": "Todos los estudiantes",
+    "totalStudents": "En total hay {{count}} estudiantes",
+    "allTeachers": "Todos los profesores",
+    "totalTeachers": "En total hay {{count}} profesores",
+    "todayMeetings": "Reuniones de hoy ({{count}})",
+    "noMeetingsToday": "¡No hay reuniones para hoy!"
+  },
+  "editatu-gehitu": {
+    "backToDashboard": "Volver a la dashboard",
+    "editUser": "Editar usuario",
+    "addUser": "Añadir usuario",
+    "username": "Nombre de usuario",
+    "name": "Nombre",
+    "surname": "Apellidos",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "role": "Rol",
+    "phone": "Teléfono",
+    "dni": "DNI",
+    "address": "Dirección",
+    "save": "Guardar",
+    "add": "Añadir"
+  },
+  "ikasle-irakasle": {
+    "photoAlt": "Foto",
+    "email": "Correo electrónico",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "message": "¿Estás seguro de que quieres eliminar este usuario?",
+    "cancel": "Cancelar",
+    "header": "Eliminar usuario"
+  },
+  "home-ikasle": {
+    "studentSpace": "Espacio del estudiante",
+    "studentData": "Datos del estudiante",
+    "personalInfo": "Información personal",
+    "address": "Dirección",
+    "phone1": "Teléfono 1",
+    "phone2": "Teléfono 2",
+    "dni": "DNI",
+    "schedule": "Horario",
+    "noSchedule": "No hay horario disponible.",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "meetings": "Reuniones ({{count}})",
+    "noMeetings": "¡No tienes reuniones, {{name}}!"
+  },
+  "home-irakasle": {
+    "teacherSpace": "Espacio del profesor",
+    "teacherData": "Datos del profesor",
+    "personalInfo": "Información personal",
+    "address": "Dirección",
+    "phone1": "Teléfono 1",
+    "phone2": "Teléfono 2",
+    "dni": "DNI",
+    "schedule": "Horario",
+    "noSchedule": "No hay horario disponible.",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "meetings": "Reuniones ({{count}})",
+    "noMeetings": "¡No tienes reuniones, {{name}}!",
+    "students": "Estudiantes ({{count}})",
+    "searchStudent": "Buscar estudiante...",
+    "search": "Buscar",
+    "noStudents": "No hay estudiantes.",
+    "dniHeader": "DNI",
+    "nameHeader": "Nombre",
+    "surnameHeader": "Apellidos",
+    "detailsHeader": "Detalles",
+    "viewDetails": "Ver detalles"
+  },
+  "not-found": {
+    "title": "404",
+    "message": "Página no encontrada"
+  }
 }

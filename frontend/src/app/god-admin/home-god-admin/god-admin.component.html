@@ -3,15 +3,15 @@
 } @else {
 <div class="mr-5 mt-4">
   <h1 *ngIf="userType === 'jainkoa'" class="text-5xl font-bold text-center">
-    Jainkoaren espazioa
+    {{ 'god-admin.godSpace' | translate }}
   </h1>
   <h1 *ngIf="userType === 'admin'" class="text-5xl font-bold text-center">
-    Administratzailearen espazioa
+    {{ 'god-admin.adminSpace' | translate }}
   </h1>
 </div>
 <!-- User Data Section -->
 <div class="m-5">
-  <p-card header="Datos del administrador" class="shadow-lg rounded-lg">
+  <p-card header="{{ 'god-admin.adminData' | translate }}" class="shadow-lg rounded-lg">
     <div class="flex items-center p-6">
       <div class="flex-shrink-0">
         <img
@@ -29,18 +29,18 @@
     </div>
     <p-divider type="solid" />
     <div class="p-6 space-y-4">
-      <h1 class="text-2xl font-bold text-center">Información personal</h1>
+      <h1 class="text-2xl font-bold text-center">{{ 'god-admin.personalInfo' | translate }}</h1>
       <p class="text-lg">
-        <span class="font-semibold">Dirección:</span> {{ user.direccion }}
+        <span class="font-semibold">{{ 'god-admin.address' | translate }}:</span> {{ user.direccion }}
       </p>
       <p class="text-lg">
-        <span class="font-semibold">Teléfono 1:</span> {{ user.telefono1 }}
+        <span class="font-semibold">{{ 'god-admin.phone1' | translate }}:</span> {{ user.telefono1 }}
       </p>
       <p *ngIf="user?.telefono2" class="text-lg">
-        <span class="font-semibold">Teléfono 2:</span> {{ user.telefono2 }}
+        <span class="font-semibold">{{ 'god-admin.phone2' | translate }}:</span> {{ user.telefono2 }}
       </p>
       <p class="text-lg">
-        <span class="font-semibold">DNI:</span> {{ user.dni }}
+        <span class="font-semibold">{{ 'god-admin.dni' | translate }}:</span> {{ user.dni }}
       </p>
     </div>
   </p-card>
@@ -52,12 +52,12 @@
     class="bg-green-500 hover:bg-green-400 transition ease font-bold py-2 px-4 rounded"
   >
     <i class="pi pi-plus mr-1"></i>
-    Añadir usuario
+    {{ 'god-admin.addUser' | translate }}
   </button>
 </div>
 <div class="m-5">
-  <h3 class="text-3xl mb-3 font-bold text-center">Ikasle guztiak</h3>
-  <h5 class="text-center">Guztira {{ ikasleak.length }} ikasle daude</h5>
+  <h3 class="text-3xl mb-3 font-bold text-center">{{ 'god-admin.allStudents' | translate }}</h3>
+  <h5 class="text-center">{{ 'god-admin.totalStudents' | translate: { count: ikasleak.length } }}</h5>
   <div class="grid grid-cols-3 gap-4 ml-5 mt-2" *ngIf="ikasleak.length > 0">
     <ng-container *ngFor="let ikasle of ikasleak">
       <app-ikasle-irakasle-card
@@ -70,9 +70,9 @@
 <p-divider type="solid" />
 
 <div class="m-5">
-  <h3 class="text-3xl mb-3 font-bold text-center">Irakasle guztiak</h3>
+  <h3 class="text-3xl mb-3 font-bold text-center">{{ 'god-admin.allTeachers' | translate }}</h3>
   <h5 class="text-center mb-3">
-    Guztira {{ irakasleak.length }} irakasle daude
+    {{ 'god-admin.totalTeachers' | translate: { count: irakasleak.length } }}
   </h5>
   <div class="grid grid-cols-3 gap-4 ml-5 mt-2" *ngIf="irakasleak.length > 0">
     <ng-container *ngFor="let irakasle of irakasleak">
@@ -85,10 +85,10 @@
 
 <p-divider type="solid" />
 <div class="m-5">
-  <p-card header="Gaurko bilerak ({{ bilerak.length }})" class="shadow-lg rounded-lg">
+  <p-card header="{{ 'god-admin.todayMeetings' | translate: { count: bilerak.length } }}" class="shadow-lg rounded-lg">
     <!-- BILERAK -->
     <div *ngIf="bilerak.length === 0">
-      <p class="m-6 text-center">Ez daude bilerarik gaurkorako!</p>
+      <p class="m-6 text-center">{{ 'god-admin.noMeetingsToday' | translate }}</p>
     </div>
     <div class="grid grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
       <div *ngFor="let bilera of bilerak" class="mb-4">

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../../services/auth.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ikasle-irakasle-card',
@@ -24,7 +24,8 @@ export class IkasleIrakasleCardComponent {
     private confirmationService: ConfirmationService,
     private router: Router,
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {}
@@ -45,7 +46,7 @@ export class IkasleIrakasleCardComponent {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'No puedes borrar tu propio usuario!',
+        detail: 'You cannot delete yourself!',
       });
       return;
     } else if (id !== undefined) {
@@ -55,7 +56,7 @@ export class IkasleIrakasleCardComponent {
           if (response.success) {
             this.messageService.add({
               severity: 'success',
-              summary: 'Usuario eliminado',
+              summary: 'User deleted',
               detail: 'User correctly deleted!',
             });
           } else {
@@ -71,14 +72,14 @@ export class IkasleIrakasleCardComponent {
 
   confirmDeleteUser(id: number | undefined) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete <b>' + this.ikasleIrakasle?.nombre + '</b>?',
-      header: 'Delete confirmation',
+      message: this.translateService.instant('ikasle-irakasle.message'),
+      header: this.translateService.instant('ikasle-irakasle.header') + ' ' + this.ikasleIrakasle?.username,
       acceptButtonProps: {
-        label: 'Delete',
+        label: this.translateService.instant('ikasle-irakasle.delete'),
         severity: 'danger',
       },
       rejectButtonProps: {
-        label: 'Cancel',
+        label: this.translateService.instant('ikasle-irakasle.cancel'),
         severity: 'secondary',
         outlined: true,
       },

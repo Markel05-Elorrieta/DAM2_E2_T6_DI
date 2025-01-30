@@ -13,6 +13,7 @@ import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { IOrdutegia } from '../../interfaces/IOrdutegia';
 import { IReunionesProfesor } from '../../interfaces/IReunionesProfesor';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-irakasle',
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     PhotosPipe,
     PanelModule,
     FormsModule,
+    TranslateModule,
   ],
   templateUrl: './home-irakasle.component.html',
   styleUrl: './home-irakasle.component.css',

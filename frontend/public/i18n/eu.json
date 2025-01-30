@@ -1,4 +1,7 @@
 {
+  "header": {
+    "language": "Aldatu hizkuntza"
+  },
   "login": {
     "signInToYourAccount": "Hasi saioa zure kontuan",
     "email": "E-posta",
@@ -19,6 +22,104 @@
     "meetingInfo": "Bileraren informazioa",
     "mapLocation": "Mapa · Bileraren kokapena"
   },
+  "estado": {
+    "aceptada": "Onartua",
+    "denegada": "Ez onartua",
+    "pendiente": "Zain",
+    "conflicto": "Gatazka"
+  },
   "edit": "Editatu",
-  "delete": "Ezabatu"
+  "delete": "Ezabatu",
+  "viewDetails": "Ikusi xehetasunak",
+  "god-admin": {
+    "godSpace": "Jainkoaren espazioa",
+    "adminSpace": "Administratzailearen espazioa",
+    "adminData": "Administratzailearen datuak",
+    "personalInfo": "Informazio pertsonala",
+    "address": "Helbidea",
+    "phone1": "Telefonoa 1",
+    "phone2": "Telefonoa 2",
+    "dni": "NAN",
+    "addUser": "Erabiltzailea gehitu",
+    "allStudents": "Ikasle guztiak",
+    "totalStudents": "Guztira {{count}} ikasle daude",
+    "allTeachers": "Irakasle guztiak",
+    "totalTeachers": "Guztira {{count}} irakasle daude",
+    "todayMeetings": "Gaurko bilerak ({{count}})",
+    "noMeetingsToday": "Ez daude bilerarik gaurkorako!"
+  },
+  "editatu-gehitu": {
+    "backToDashboard": "Itzuli aginte-panelera",
+    "editUser": "Erabiltzailea editatu",
+    "addUser": "Erabiltzailea gehitu",
+    "username": "Erabiltzailea",
+    "name": "Izena",
+    "surname": "Abizenak",
+    "email": "E-posta",
+    "password": "Pasahitza",
+    "role": "Rola",
+    "phone": "Telefonoa",
+    "dni": "NAN",
+    "address": "Helbidea",
+    "save": "Gorde",
+    "add": "Gehitu"
+  },
+  "ikasle-irakasle": {
+    "photoAlt": "Argazkia",
+    "email": "E-posta",
+    "edit": "Editatu",
+    "delete": "Ezabatu",
+    "message": "Benetan ezabatu nahi duzu erabiltzailea?",
+    "header": "Ezabatu erabiltzailea",
+    "cancel": "Utzi"
+  },
+  "home-ikasle": {
+    "studentSpace": "Ikaslearen espazioa",
+    "studentData": "Ikaslearen datuak",
+    "personalInfo": "Informazio pertsonala",
+    "address": "Helbidea",
+    "phone1": "Telefonoa 1",
+    "phone2": "Telefonoa 2",
+    "dni": "NAN",
+    "schedule": "Ordutegia",
+    "noSchedule": "Ez dago ordutegirik eskuragarri.",
+    "monday": "Astelehena",
+    "tuesday": "Asteartea",
+    "wednesday": "Asteazkena",
+    "thursday": "Osteguna",
+    "friday": "Ostirala",
+    "meetings": "Bilerak ({{count}})",
+    "noMeetings": "Ez daukazu bilerarik, {{name}}!"
+  },
+  "home-irakasle": {
+    "teacherSpace": "Irakaslearen espazioa",
+    "teacherData": "Irakaslearen datuak",
+    "personalInfo": "Informazio pertsonala",
+    "address": "Helbidea",
+    "phone1": "Telefonoa 1",
+    "phone2": "Telefonoa 2",
+    "dni": "NAN",
+    "schedule": "Ordutegia",
+    "noSchedule": "Ez dago ordutegirik eskuragarri.",
+    "monday": "Astelehena",
+    "tuesday": "Asteartea",
+    "wednesday": "Asteazkena",
+    "thursday": "Osteguna",
+    "friday": "Ostirala",
+    "meetings": "Bilerak ({{count}})",
+    "noMeetings": "Ez daukazu bilerarik, {{name}}!",
+    "students": "Ikasleak ({{count}})",
+    "searchStudent": "Bilatu ikaslea...",
+    "search": "Bilatu",
+    "noStudents": "Ez daude ikaslerik.",
+    "dniHeader": "NAN",
+    "nameHeader": "Izena",
+    "surnameHeader": "Abizenak",
+    "detailsHeader": "Xehetasunak",
+    "viewDetails": "Xehetasunak ikusi"
+  },
+  "not-found": {
+    "title": "404",
+    "message": "Orrialdea ez da aurkitu"
+  }
 }

@@ -1,20 +1,20 @@
 <div class="flex justify-start m-5">
   <a routerLink="/god-admin" class="text-blue-500 flex items-center mb-1">
     <i class="pi pi-angle-left mr-2"></i>
-    Volver a la dashboard
+    {{ 'editatu-gehitu.backToDashboard' | translate }}
   </a>
 </div>
 <div class="flex justify-center items-center min-h-screen">
   <p-card
-    [header]="user ? 'Editar usuario' : 'Añadir usuario'"
+    [header]="user ? ('editatu-gehitu.editUser' | translate) : ('editatu-gehitu.addUser' | translate)"
     class="shadow-lg rounded-lg m-5 w-full max-w-md"
   >
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <div class="space-y-4 mt-3 m-4">
         <div class="flex flex-col">
-          <label for="username" class="mb-2 text-sm font-medium"
-            >Nombre de usuario</label
-          >
+          <label for="username" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.username' | translate }}
+          </label>
           <input
             id="username"
             type="text"
@@ -24,7 +24,9 @@
           />
         </div>
         <div class="flex flex-col">
-          <label for="nombre" class="mb-2 text-sm font-medium">Nombre</label>
+          <label for="nombre" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.name' | translate }}
+          </label>
           <input
             id="nombre"
             type="text"
@@ -34,9 +36,9 @@
           />
         </div>
         <div class="flex flex-col">
-          <label for="apellidos" class="mb-2 text-sm font-medium"
-            >Apellidos</label
-          >
+          <label for="apellidos" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.surname' | translate }}
+          </label>
           <input
             id="apellidos"
             type="text"
@@ -46,9 +48,9 @@
           />
         </div>
         <div class="flex flex-col">
-          <label for="email" class="mb-2 text-sm font-medium"
-            >Correo electrónico</label
-          >
+          <label for="email" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.email' | translate }}
+          </label>
           <input
             id="email"
             type="email"
@@ -58,7 +60,9 @@
           />
         </div>
         <div *ngIf="!user" class="flex flex-col">
-          <label for="password" class="mb-2 text-sm font-medium">Contraseña</label>
+          <label for="password" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.password' | translate }}
+          </label>
           <input
             id="password"
             type="password"
@@ -68,15 +72,19 @@
           />
         </div>
         <div class="flex flex-col">
-          <label for="role" class="mb-2 text-sm font-medium">Rol</label>
+          <label for="role" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.role' | translate }}
+          </label>
           <p-select
             [options]="rolesName"
             formControlName="role"
-            placeholder="Selecciona un rol"
+            placeholder="{{ 'editatu-gehitu.role' | translate }}"
           ></p-select>
         </div>
         <div class="flex flex-col">
-          <label for="phone" class="mb-2 text-sm font-medium">Teléfono</label>
+          <label for="phone" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.phone' | translate }}
+          </label>
           <input
             id="phone"
             type="text"
@@ -86,7 +94,9 @@
           />
         </div>
         <div class="flex flex-col">
-          <label for="dni" class="mb-2 text-sm font-medium">DNI</label>
+          <label for="dni" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.dni' | translate }}
+          </label>
           <input
             id="dni"
             type="text"
@@ -96,9 +106,9 @@
           />
         </div>
         <div class="flex flex-col">
-          <label for="address" class="mb-2 text-sm font-medium"
-            >Dirección</label
-          >
+          <label for="address" class="mb-2 text-sm font-medium">
+            {{ 'editatu-gehitu.address' | translate }}
+          </label>
           <input
             id="address"
             type="text"
@@ -111,7 +121,7 @@
           <button
             type="submit"
             pButton
-            [label]="user ? 'Gorde' : 'Añadir'"
+            [label]="user ? ('editatu-gehitu.save' | translate) : ('editatu-gehitu.add' | translate)"
             class="px-4 py-2 font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           ></button>
         </div>
@@ -120,4 +130,4 @@
   </p-card>
 </div>
 
-<p-toast position="top-center" />
+<p-toast position="top-center"></p-toast>

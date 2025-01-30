@@ -22,7 +22,7 @@
       </p-toggleswitch>
     </div>
     <div
-      pTooltip="Aldatu hizkuntza"
+      pTooltip="{{ 'header.language' | translate }}"
       tooltipPosition="left"
     >
       <p-select
@@ -38,7 +38,7 @@
         </ng-template>
       </p-select>
     </div>
-    @if (isLoggedIn()) {
+    @if (isLoggedIn() && getLoggedUser()) {
     <div class="user-menu flex items-center">
       <p-menu #menu [model]="items" [popup]="true"></p-menu>
       <button (click)="menu.toggle($event)" class="ml-2">

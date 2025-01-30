@@ -32,7 +32,7 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser(): IUser {
+  async getUser(): Promise<IUser> {
     return JSON.parse(localStorage.getItem('user')!);
   }
 

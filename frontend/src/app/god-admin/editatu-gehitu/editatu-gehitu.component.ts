@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { HezkuntzaService } from '../../services/hezkuntza.service';
 import { RouterLink } from '@angular/router';
 import { IUserTypes } from '../../interfaces/IUserTypes';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-editatu-gehitu',
@@ -26,6 +27,7 @@ import { IUserTypes } from '../../interfaces/IUserTypes';
     ButtonModule,
     ToastModule,
     RouterLink,
+    TranslateModule
   ],
   templateUrl: './editatu-gehitu.component.html',
   styleUrl: './editatu-gehitu.component.css',

@@ -11,11 +11,12 @@ import { LoadingComponent } from "../../loading-spinner/loading/loading.componen
 import { Router } from '@angular/router';
 import { IReunionesGeneral } from '../../interfaces/IReunionesGeneral';
 import { BilerakCardComponent } from '../../bilerakComponents/bilerak-card/bilerak-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-god-admin',
   standalone: true,
-  imports: [CardModule, PhotosPipe, CommonModule, DividerModule, IkasleIrakasleCardComponent, LoadingComponent, BilerakCardComponent],
+  imports: [CardModule, PhotosPipe, CommonModule, DividerModule, IkasleIrakasleCardComponent, LoadingComponent, BilerakCardComponent, TranslateModule],
   templateUrl: './god-admin.component.html',
   styleUrl: './god-admin.component.css'
 })
