@@ -28,6 +28,8 @@
     "primeng": "^19.0.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "utm": "^1.1.1",
+    "utm-latlng": "^1.0.8",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -36,6 +38,7 @@
     "@angular/compiler-cli": "^19.0.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/jasmine": "~5.1.0",
+    "@types/utm": "^1.1.4",
     "autoprefixer": "^10.4.20",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",

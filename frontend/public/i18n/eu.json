@@ -121,5 +121,13 @@
   "not-found": {
     "title": "404",
     "message": "Orrialdea ez da aurkitu"
+  },
+  "userDetails": {
+    "backToDashboard": "Itzuli aginte-panelera",
+    "userInfo": "Erabiltzailearen informazioa",
+    "dni": "NAN",
+    "email": "E-posta",
+    "phone": "Telefonoa",
+    "address": "Helbidea"
   }
 }

@@ -102,7 +102,7 @@ export class HeaderComponent {
   async getLoggedUserName(): Promise<string> {
     if (this.isLoggedIn()) {
       const fetchedUser = await this.authService.getUser();
-      return fetchedUser.nombre;
+      return fetchedUser.nombre + ' ' + fetchedUser.apellidos;
     }
     return '';
   }

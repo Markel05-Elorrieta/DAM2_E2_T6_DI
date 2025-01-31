@@ -71,16 +71,11 @@ export class HezkuntzaService {
     );
   }
 
-  getIkastetxeak(): Observable<IIkastetxeak[]> {
-    return this.httpClient.get<IIkastetxeak[]>(
-      environment.IkastetxeakAPIUrl + '/IKASTETXEAK/'
+  getIkastetxeaByID(id: number): Observable<IIkastetxeak> {
+    return this.httpClient.get<IIkastetxeak>(
+      `${environment.IkastetxeakAPIUrl}/IKASTETXEAK/?CCEN=${id}`
     );
   }
-
-  /*filterIkastetxeaByID(id: number): Promise<IIkastetxeak> {
-    const ikastetxeak = this.getIkastetxeak();
-    return ikastetxeak.find((ikastetxe) => ikastetxe.CCEN === id);
-  }*/
 
   updateUser(user: IUser): Observable<IUser> {
     const {

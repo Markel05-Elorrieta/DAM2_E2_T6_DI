@@ -41,6 +41,10 @@ export class IkasleIrakasleCardComponent {
     this.router.navigate([`/god-admin/edit/${id}`]);
   }
 
+  detailsUser(id: number | undefined) {
+    this.router.navigate([`/god-admin/user/${id}`]);
+  }
+
   deleteUser(id: number | undefined) {
     if (this.getLoggedInUser().id === id) {
       this.messageService.add({

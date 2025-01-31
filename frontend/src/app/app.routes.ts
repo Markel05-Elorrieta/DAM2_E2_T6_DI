@@ -7,6 +7,7 @@ import { BilerakComponent } from './bilerakComponents/bilerak/bilerak.component'
 import { GodAdminComponent } from './god-admin/home-god-admin/god-admin.component';
 import { EditatuGehituComponent } from './god-admin/editatu-gehitu/editatu-gehitu.component';
 import { RoleGuard } from './guards/role.guard';
+import { UserDetailsComponent } from './god-admin/user-details/user-details/user-details.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,7 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', title: 'Home - Teachers - JEM SchoolsApp', component: HomeIrakasleComponent },
       { path: 'meeting/:id', title: 'Meeting - Teachers - JEM SchoolsApp', component: BilerakComponent },
+      { path: 'user/:id', title: 'User Details - Teachers - JEM SchoolsApp', component: UserDetailsComponent },
     ],
   },
   {
@@ -52,6 +54,7 @@ export const routes: Routes = [
       { path: 'meeting/:id', title: 'Meeting - God/Admin - JEM SchoolsApp', component: BilerakComponent },
       { path: 'add', title: 'Add User - God/Admin - JEM SchoolsApp', component: EditatuGehituComponent },
       { path: 'edit/:id', title: 'Edit User - God/Admin - JEM SchoolsApp', component: EditatuGehituComponent },
+      { path: 'user/:id', title: 'User Details - God/Admin - JEM SchoolsApp', component: UserDetailsComponent },
     ],
   },
   {
