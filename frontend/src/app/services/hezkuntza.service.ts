@@ -8,6 +8,7 @@ import { IReunionesProfesor } from '../interfaces/IReunionesProfesor';
 import { IIkastetxeak } from '../interfaces/IIkastetxeak';
 import { IUser } from '../interfaces/IUser';
 import { IReunionesGeneral } from '../interfaces/IReunionesGeneral';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -72,8 +73,10 @@ export class HezkuntzaService {
   }
 
   getIkastetxeaByID(id: number): Observable<IIkastetxeak> {
-    return this.httpClient.get<IIkastetxeak>(
+    return this.httpClient.get<IIkastetxeak[]>(
       `${environment.IkastetxeakAPIUrl}/IKASTETXEAK/?CCEN=${id}`
+    ).pipe(
+      map(data => data[0])
     );
   }
 

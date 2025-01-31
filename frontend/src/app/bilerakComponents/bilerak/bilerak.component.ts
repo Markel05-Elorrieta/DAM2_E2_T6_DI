@@ -47,7 +47,7 @@ export class BilerakComponent {
 
     this.bileraID = this.activatedRoute.snapshot.params['id'];
     this.getBilera();
-    
+
     const url = this.router.url;
     if (url.includes('teachers')) {
       this.returnRoute = '/teachers';
@@ -131,10 +131,23 @@ export class BilerakComponent {
   addMarkerBilera() {
     if (this.ikastetxea) {
       console.log(this.ikastetxea);
-      this.map.setCenter([this.ikastetxea.LONGITUD, this.ikastetxea.LATITUD]);
-      this.map.setZoom(9);
+      this.map.setCenter([this.ikastetxea.LATITUD, this.ikastetxea.LONGITUD]);
+      this.map.setZoom(11);
       new mapboxgl.Marker()
-        .setLngLat([this.ikastetxea.LONGITUD, this.ikastetxea.LATITUD])
+        .setLngLat([this.ikastetxea.LATITUD, this.ikastetxea.LONGITUD])
+        .setPopup(
+          new mapboxgl.Popup({ maxWidth: '300px' }).setHTML(`
+          <div style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="margin: 0; color: #007BFF; font-size: 1.2rem; margin-bottom: 1rem;">${this.ikastetxea?.NOM}</h2>
+        <p style="margin: 0;">Municipio: ${this.ikastetxea?.DMUNIC}</p>
+        <p style="margin: 0;">Dirección: ${this.ikastetxea?.DOMI}</p>
+        <p style="margin: 0;">Código Postal: ${this.ikastetxea?.CPOS}</p>
+        <p style="margin: 0;">Teléfono: ${this.ikastetxea?.TEL1}</p>
+        <p style="margin: 0;">Email: <a href="mailto:${this.ikastetxea?.EMAIL}">${this.ikastetxea?.EMAIL}</a></p>
+        <p style="margin: 0;">Página web: <a href="${this.ikastetxea?.PAGINA}" target="_blank">${this.ikastetxea?.PAGINA}</a></p>
+          </div>
+          `)
+        )
         .addTo(this.map);
     } else {
       console.log('Ikastetxea is undefined');
