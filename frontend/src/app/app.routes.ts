@@ -6,7 +6,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BilerakComponent } from './bilerakComponents/bilerak/bilerak.component';
 import { GodAdminComponent } from './god-admin/home-god-admin/god-admin.component';
 import { EditatuGehituComponent } from './god-admin/editatu-gehitu/editatu-gehitu.component';
-import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
@@ -19,13 +18,12 @@ export const routes: Routes = [
     path: 'login',
     title: 'Login - JEM SchoolsApp',
     component: LoginComponent,
-    canActivate: [RoleGuard],
   },
   {
     path: 'students',
     title: 'Students',
     canActivate: [RoleGuard],
-    data: { role: 'ikaslea' },
+    data: { role: 'students' },
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', title: 'Home - Students - JEM SchoolsApp', component: HomeIkasleComponent },
@@ -36,7 +34,7 @@ export const routes: Routes = [
     path: 'teachers',
     title: 'Teachers',
     canActivate: [RoleGuard],
-    data: { role: 'irakaslea' },
+    data: { role: 'teachers' },
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', title: 'Home - Teachers - JEM SchoolsApp', component: HomeIrakasleComponent },
