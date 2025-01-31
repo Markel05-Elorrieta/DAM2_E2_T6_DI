@@ -63,6 +63,7 @@ export class IkasleIrakasleCardComponent {
               summary: 'User deleted',
               detail: 'User correctly deleted!',
             });
+            window.location.reload();
           } else {
             this.messageService.add({
               severity: 'error',
