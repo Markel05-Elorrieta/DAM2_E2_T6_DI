@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 import { PhotosPipe } from '../../pipes/photos.pipe';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -34,7 +35,8 @@ export class HeaderComponent {
   constructor(
     private translateService: TranslateService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   languages = [
@@ -45,6 +47,7 @@ export class HeaderComponent {
   checked: boolean = false;
   items: MenuItem[] | undefined;
   loggedUsername: string = '';
+  headerRoutes: string = '';
 
   async ngOnInit() {
     this.items = [
@@ -64,6 +67,20 @@ export class HeaderComponent {
 
     this.checked = this.getDarkModePreference();
     this.applyDarkMode(this.checked);
+    this.setHeaderRoutes();
+  }
+
+  setHeaderRoutes() {
+    const url = this.router.url;
+    if (url.includes('/students')) {
+      this.headerRoutes = '/students';
+    } else if (url.includes('/teachers')) {
+      this.headerRoutes = '/teachers';
+    } else if (url.includes('/god-admin')) {
+      this.headerRoutes = '/god-admin';
+    } else {
+      this.headerRoutes = '/';
+    }
   }
 
   toggleDarkMode() {
@@ -85,7 +102,7 @@ export class HeaderComponent {
   async getLoggedUserName(): Promise<string> {
     if (this.isLoggedIn()) {
       const fetchedUser = await this.authService.getUser();
-      return fetchedUser.nombre;
+      return fetchedUser.nombre + ' ' + fetchedUser.apellidos;
     }
     return '';
   }

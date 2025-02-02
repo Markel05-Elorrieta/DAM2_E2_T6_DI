@@ -14,7 +14,7 @@ const db = mysql.createConnection({
   host: "52.47.82.98", // MySQL zerbitzariaren helbidea
   user: "adminElorbase", // MySQL erabiltzailea
   password: "jemsoftware1234", // MySQL pasahitza
-  database: "elortest", // Datu-basearen izena
+  database: "elorbase", // Datu-basearen izena
   //    port: '3306' , // Portua
 });
 

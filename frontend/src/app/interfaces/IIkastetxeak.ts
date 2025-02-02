@@ -1,5 +1,4 @@
 export interface IIkastetxeak {
-    filter(arg0: (ikastetxe: IIkastetxeak) => boolean): IIkastetxeak | undefined;
     CCEN:     number;
     NOM:      string;
     NOME:     string;

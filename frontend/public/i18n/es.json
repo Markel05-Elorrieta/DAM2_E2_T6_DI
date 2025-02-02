@@ -121,5 +121,13 @@
   "not-found": {
     "title": "404",
     "message": "Página no encontrada"
+  },
+  "userDetails": {
+    "backToDashboard": "Volver a la dashboard",
+    "userInfo": "Información del usuario",
+    "dni": "DNI",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "address": "Dirección"
   }
 }

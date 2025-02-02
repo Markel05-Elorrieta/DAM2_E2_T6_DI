@@ -6,8 +6,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BilerakComponent } from './bilerakComponents/bilerak/bilerak.component';
 import { GodAdminComponent } from './god-admin/home-god-admin/god-admin.component';
 import { EditatuGehituComponent } from './god-admin/editatu-gehitu/editatu-gehitu.component';
-import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { UserDetailsComponent } from './god-admin/user-details/user-details/user-details.component';
 
 export const routes: Routes = [
   {
@@ -19,13 +19,12 @@ export const routes: Routes = [
     path: 'login',
     title: 'Login - JEM SchoolsApp',
     component: LoginComponent,
-    canActivate: [RoleGuard],
   },
   {
     path: 'students',
     title: 'Students',
     canActivate: [RoleGuard],
-    data: { role: 'ikaslea' },
+    data: { role: 'students' },
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', title: 'Home - Students - JEM SchoolsApp', component: HomeIkasleComponent },
@@ -36,11 +35,12 @@ export const routes: Routes = [
     path: 'teachers',
     title: 'Teachers',
     canActivate: [RoleGuard],
-    data: { role: 'irakaslea' },
+    data: { role: 'teachers' },
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', title: 'Home - Teachers - JEM SchoolsApp', component: HomeIrakasleComponent },
       { path: 'meeting/:id', title: 'Meeting - Teachers - JEM SchoolsApp', component: BilerakComponent },
+      { path: 'user/:id', title: 'User Details - Teachers - JEM SchoolsApp', component: UserDetailsComponent },
     ],
   },
   {
@@ -54,6 +54,7 @@ export const routes: Routes = [
       { path: 'meeting/:id', title: 'Meeting - God/Admin - JEM SchoolsApp', component: BilerakComponent },
       { path: 'add', title: 'Add User - God/Admin - JEM SchoolsApp', component: EditatuGehituComponent },
       { path: 'edit/:id', title: 'Edit User - God/Admin - JEM SchoolsApp', component: EditatuGehituComponent },
+      { path: 'user/:id', title: 'User Details - God/Admin - JEM SchoolsApp', component: UserDetailsComponent },
     ],
   },
   {

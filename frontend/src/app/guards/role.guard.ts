@@ -19,24 +19,24 @@ export class RoleGuard implements CanActivate {
     const userRole = userData.tipo_id;
     const requiredRole = route.data['role'];
 
-    // Mapeo de tipo_id a rutas permitidas
     const roleRoutes: Record<number, string> = {
       1: 'god-admin', // god
-      2: 'god-admin', // admin (se asume que admin y god van juntos)
+      2: 'god-admin', // admin
       3: 'teachers',  // teacher
       4: 'students',  // student
     };
 
-    // Si el usuario está logueado y trata de ir a /login, redirigirlo a su home correspondiente
+    const userHome = `/${roleRoutes[userRole]}/home`;
+
     if (state.url === '/login') {
-      const userHome = `/${roleRoutes[userRole]}/home`;
-      this.router.navigate([userHome]);
-      return false;
+      if (roleRoutes[userRole]) {
+        this.router.navigate([userHome]);
+        return false;
+      }
+      return true;
     }
 
-    // Si el usuario intenta acceder a una ruta que no le corresponde, redirigir a su home
     if (roleRoutes[userRole] !== requiredRole) {
-      const userHome = `/${roleRoutes[userRole]}/home`;
       this.router.navigate([userHome]);
       return false;
     }
