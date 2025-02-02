@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"ng dev\" \"npm run start:api\" \"json-server --watch public/ikastetxeak.json\"",
+    "start:api": "node ../backend/index.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -23,6 +24,7 @@
     "@primeng/themes": "^19.0.5",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^9.1.2",
     "mapbox-gl": "^3.9.4",
     "primeicons": "^7.0.0",
     "primeng": "^19.0.5",
