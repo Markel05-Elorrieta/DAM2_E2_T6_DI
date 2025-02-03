@@ -19,6 +19,7 @@ export const routes: Routes = [
     path: 'login',
     title: 'Login - JEM SchoolsApp',
     component: LoginComponent,
+    canActivate: [RoleGuard],
   },
   {
     path: 'students',

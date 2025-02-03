@@ -9,20 +9,29 @@
       <p class="font-bold text-2xl mb-2">
         {{ ikasleIrakasle?.nombre }} {{ ikasleIrakasle?.apellidos }}
       </p>
-      <p class="text-gray-400 text-lg">{{ 'ikasle-irakasle.email' | translate }}: {{ ikasleIrakasle?.email }}</p>
+      <p class="text-gray-400 text-lg">
+        {{ "ikasle-irakasle.email" | translate }}: {{ ikasleIrakasle?.email }}
+      </p>
     </div>
   </div>
   <div class="flex justify-end mt-4">
-    <button (click)="detailsUser(ikasleIrakasle?.id)" class="bg-green-500 text-white px-4 py-2 rounded mr-2 hover:bg-green-400 transition ease duration-300">
-      <i class="pi pi-plus mr-1"></i>
+    <button
+    pTooltip="{{ 'ikasle-irakasle.details' | translate }}"
+    tooltipPosition="bottom"
+      (click)="detailsUser(ikasleIrakasle?.id)"
+      class="bg-green-500 text-white px-4 py-2 rounded mr-2 hover:bg-green-400 transition ease duration-300"
+    >
+      <i class="pi pi-plus"></i>
     </button>
     <button
       class="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-400 transition ease duration-300"
       (click)="editUser(ikasleIrakasle?.id)"
     >
-      <i class="pi pi-pencil mr-1"></i> {{ 'ikasle-irakasle.edit' | translate }}
+      <i class="pi pi-pencil mr-1"></i> {{ "ikasle-irakasle.edit" | translate }}
     </button>
     <button
+      pTooltip="{{ 'ikasle-irakasle.delete' | translate }}"
+      tooltipPosition="bottom"
       class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-400 transition ease duration-300"
       (click)="confirmDeleteUser(ikasleIrakasle?.id)"
     >

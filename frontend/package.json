@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "concurrently \"ng dev\" \"npm run start:api\" \"json-server --watch public/ikastetxeak.json\"",
     "start:api": "node ../backend/index.js",
+    "stop": "taskkill /F /IM ng.exe /T && taskkill /F /IM node.exe /T && taskkill /F /IM json-server.exe /T",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

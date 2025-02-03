@@ -71,7 +71,8 @@
     "delete": "Ezabatu",
     "message": "Benetan ezabatu nahi duzu erabiltzailea?",
     "header": "Ezabatu erabiltzailea",
-    "cancel": "Utzi"
+    "cancel": "Utzi",
+    "details": "Xehetasunak ikusi"
   },
   "home-ikasle": {
     "studentSpace": "Ikaslearen espazioa",

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { SelectModule } from 'primeng/select';
@@ -36,7 +36,7 @@ export class HeaderComponent {
     private translateService: TranslateService,
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private cdRef: ChangeDetectorRef,
   ) {}
 
   languages = [
@@ -50,9 +50,10 @@ export class HeaderComponent {
   headerRoutes: string = '';
 
   async ngOnInit() {
+    const username = await this.getLoggedUserName();
     this.items = [
       {
-        label: await this.getLoggedUserName(),
+        label: username,
         items: [
           {
             label: 'Logout',
@@ -67,20 +68,8 @@ export class HeaderComponent {
 
     this.checked = this.getDarkModePreference();
     this.applyDarkMode(this.checked);
-    this.setHeaderRoutes();
-  }
 
-  setHeaderRoutes() {
-    const url = this.router.url;
-    if (url.includes('/students')) {
-      this.headerRoutes = '/students';
-    } else if (url.includes('/teachers')) {
-      this.headerRoutes = '/teachers';
-    } else if (url.includes('/god-admin')) {
-      this.headerRoutes = '/god-admin';
-    } else {
-      this.headerRoutes = '/';
-    }
+    this.cdRef.detectChanges();
   }
 
   toggleDarkMode() {
@@ -102,10 +91,15 @@ export class HeaderComponent {
   async getLoggedUserName(): Promise<string> {
     if (this.isLoggedIn()) {
       const fetchedUser = await this.authService.getUser();
-      return fetchedUser.nombre + ' ' + fetchedUser.apellidos;
+      const fullName = fetchedUser.nombre + ' ' + fetchedUser.apellidos;
+  
+      this.cdRef.detectChanges();
+  
+      return fullName;
     }
     return '';
   }
+  
 
   saveDarkModePreference() {
     localStorage.setItem('darkMode', this.checked.toString());

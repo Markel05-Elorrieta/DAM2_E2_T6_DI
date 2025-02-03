@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -7,10 +12,16 @@ import { CanActivate, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from
 export class RoleGuard implements CanActivate {
   constructor(private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     const user = localStorage.getItem('user');
 
     if (!user) {
+      if (state.url === '/login') {
+        return true;
+      }
       this.router.navigate(['/login']);
       return false;
     }
@@ -22,8 +33,8 @@ export class RoleGuard implements CanActivate {
     const roleRoutes: Record<number, string> = {
       1: 'god-admin', // god
       2: 'god-admin', // admin
-      3: 'teachers',  // teacher
-      4: 'students',  // student
+      3: 'teachers', // teacher
+      4: 'students', // student
     };
 
     const userHome = `/${roleRoutes[userRole]}/home`;

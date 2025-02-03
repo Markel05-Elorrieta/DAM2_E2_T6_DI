@@ -71,7 +71,8 @@
     "delete": "Eliminar",
     "message": "¿Estás seguro de que quieres eliminar este usuario?",
     "cancel": "Cancelar",
-    "header": "Eliminar usuario"
+    "header": "Eliminar usuario",
+    "details": "Ver detalles"
   },
   "home-ikasle": {
     "studentSpace": "Espacio del estudiante",

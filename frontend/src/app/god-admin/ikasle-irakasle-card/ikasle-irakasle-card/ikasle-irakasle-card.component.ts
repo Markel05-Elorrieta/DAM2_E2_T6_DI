@@ -8,11 +8,12 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../../services/auth.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-ikasle-irakasle-card',
   standalone: true,
-  imports: [CardModule, PhotosPipe, ButtonModule, ConfirmDialogModule, TranslateModule],
+  imports: [CardModule, PhotosPipe, ButtonModule, ConfirmDialogModule, TranslateModule, TooltipModule],
   templateUrl: './ikasle-irakasle-card.component.html',
   styleUrl: './ikasle-irakasle-card.component.css',
   providers: [MessageService, ConfirmationService],
