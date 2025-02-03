@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL datu-baserako konexioa sortu
 const db = mysql.createConnection({
-  host: "52.47.82.98", // MySQL zerbitzariaren helbidea
+  host: "13.39.156.99", // MySQL zerbitzariaren helbidea
   user: "adminElorbase", // MySQL erabiltzailea
   password: "jemsoftware1234", // MySQL pasahitza
   database: "elorbase", // Datu-basearen izena

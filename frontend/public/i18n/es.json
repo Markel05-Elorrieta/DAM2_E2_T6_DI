@@ -19,8 +19,8 @@
     "title": "Título",
     "status": "Estado",
     "backToDashboard": "Volver a la dashboard",
-    "meetingInfo": "Bileraren informazioa",
-    "mapLocation": "Mapa · Bileraren kokapena"
+    "meetingInfo": "Información de la reunión",
+    "mapLocation": "Mapa · Ubicación de la reunión"
   },
   "estado": {
     "aceptada": "Aceptada",
