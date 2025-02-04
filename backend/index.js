@@ -252,7 +252,8 @@ app.get("/meetings-student/:userId", (req, res) => {
     u.apellidos as apellidos_profesor
 from reuniones r
 join users u on r.profesor_id = u.id
-where r.alumno_id = ?;`;
+where r.alumno_id = ? AND
+DATE(r.fecha) >= CURRENT_DATE;`;
   db.query(query, [userId], (err, results) => {
     if (err) {
       console.error("Errorea datu-basera konektatzean:", err);
@@ -277,7 +278,8 @@ app.get("/meetings-teacher/:userId", (req, res) => {
     u.apellidos as apellidos_alumno
 from reuniones r
 join users u on r.alumno_id = u.id
-where r.profesor_id = ?;`;
+where r.profesor_id = ? AND
+DATE(r.fecha) >= CURRENT_DATE;`;
   db.query(query, [userId], (err, results) => {
     if (err) {
       console.error("Errorea datu-basera konektatzean:", err);
