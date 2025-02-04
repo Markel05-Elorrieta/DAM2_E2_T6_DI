@@ -3,15 +3,18 @@
 } @else {
 <div class="mr-5 mt-4">
   <h1 *ngIf="userType === 'jainkoa'" class="text-5xl font-bold text-center">
-    {{ 'god-admin.godSpace' | translate }}
+    {{ "god-admin.godSpace" | translate }}
   </h1>
-  <h1 *ngIf="userType === 'admin'" class="text-5xl font-bold text-center">
-    {{ 'god-admin.adminSpace' | translate }}
+  <h1 *ngIf="userType === 'admin'" class="text-5xl font-bold text-center sm:text-4xl md:text-5xl lg:text-6xl">
+    {{ "god-admin.adminSpace" | translate }}
   </h1>
 </div>
 <!-- User Data Section -->
 <div class="m-5">
-  <p-card header="{{ 'god-admin.adminData' | translate }}" class="shadow-lg rounded-lg">
+  <p-card
+    header="{{ 'god-admin.adminData' | translate }}"
+    class="shadow-lg rounded-lg w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3"
+  >
     <div class="flex items-center p-6">
       <div class="flex-shrink-0">
         <img
@@ -21,76 +24,114 @@
         />
       </div>
       <div class="flex-grow">
-        <p class="font-bold text-5xl mb-5">
+        <p class="font-bold text-3xl sm:text-4xl md:text-5xl mb-5 text-center sm:text-left">
           {{ user.nombre }} {{ user.apellidos }}
         </p>
-        <p class="text-gray-400 text-lg">E-mail: {{ user.email }}</p>
-      </div>
-    </div>
+        <p class="text-gray-400 text-lg text-center sm:text-left">E-mail: {{ user.email }}</p>
+            </div>
+          </div>
     <p-divider type="solid" />
     <div class="p-6 space-y-4">
-      <h1 class="text-2xl font-bold text-center">{{ 'god-admin.personalInfo' | translate }}</h1>
+      <h1 class="text-2xl font-bold text-center">
+        {{ "god-admin.personalInfo" | translate }}
+      </h1>
       <p class="text-lg">
-        <span class="font-semibold">{{ 'god-admin.address' | translate }}:</span> {{ user.direccion }}
+        <span class="font-semibold">{{ "god-admin.address" | translate }}:</span>
+        {{ user.direccion }}
       </p>
       <p class="text-lg">
-        <span class="font-semibold">{{ 'god-admin.phone1' | translate }}:</span> {{ user.telefono1 }}
+        <span class="font-semibold">{{ "god-admin.phone1" | translate }}:</span>
+        {{ user.telefono1 }}
       </p>
       <p *ngIf="user?.telefono2" class="text-lg">
-        <span class="font-semibold">{{ 'god-admin.phone2' | translate }}:</span> {{ user.telefono2 }}
+        <span class="font-semibold">{{ "god-admin.phone2" | translate }}:</span>
+        {{ user.telefono2 }}
       </p>
       <p class="text-lg">
-        <span class="font-semibold">{{ 'god-admin.dni' | translate }}:</span> {{ user.dni }}
+        <span class="font-semibold">{{ "god-admin.dni" | translate }}:</span>
+        {{ user.dni }}
       </p>
     </div>
-  </p-card>
+    </p-card>
+    </div>
+    <p-divider type="solid" />
+    <div class="flex justify-center items-center my-4">
+      <button
+        (click)="addUser()"
+        class="bg-green-500 hover:bg-green-400 transition ease font-bold py-2 px-4 rounded"
+      >
+        <i class="pi pi-plus mr-1"></i>
+        {{ "god-admin.addUser" | translate }}
+      </button>
+    </div>
+    <div class="m-5">
+      <h3 class="text-3xl mb-3 font-bold text-center">
+        {{ "god-admin.allStudents" | translate }}
+      </h3>
+      <h5 class="text-center">
+        {{ "god-admin.totalStudents" | translate : { count: ikasleak.length } }}
+      </h5>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-5 mt-2" *ngIf="ikasleak.length > 0">
+        <ng-container *ngFor="let ikasle of ikasleak">
+          <app-ikasle-irakasle-card
+            [ikasleIrakasle]="ikasle"
+          ></app-ikasle-irakasle-card>
+        </ng-container>
+      </div>
+    </div>
+
+    <p-divider type="solid" />
+
+    <div class="m-5">
+      <h3 class="text-3xl mb-3 font-bold text-center sm:text-2xl md:text-3xl lg:text-4xl">
+        {{ "god-admin.allTeachers" | translate }}
+      </h3>
+      <h5 class="text-center mb-3 sm:text-lg md:text-xl lg:text-2xl">
+        {{ "god-admin.totalTeachers" | translate : { count: irakasleak.length } }}
+      </h5>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-5 mt-2" *ngIf="irakasleak.length > 0">
+        <ng-container *ngFor="let irakasle of irakasleak">
+          <app-ikasle-irakasle-card
+            [ikasleIrakasle]="irakasle"
+          ></app-ikasle-irakasle-card>
+        </ng-container>
+      </div>
+    </div>
+
+    <p-divider type="solid" />
+
+    <div class="m-5">
+      <h3 class="text-3xl mb-3 font-bold text-center sm:text-2xl md:text-3xl lg:text-4xl">
+        {{ "god-admin.allAdmins" | translate }}
+      </h3>
+      <h5 class="text-center mb-3">
+        {{ "god-admin.totalAdmins" | translate : { count: admins.length } }}
+      </h5>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-5 mt-2" *ngIf="admins.length > 0">
+    <ng-container *ngFor="let admin of admins">
+      <app-ikasle-irakasle-card
+        [ikasleIrakasle]="admin"
+      ></app-ikasle-irakasle-card>
+    </ng-container>
+  </div>
 </div>
+
 <p-divider type="solid" />
-<div class="flex justify-center items-center my-4">
-  <button
-    (click)="addUser()"
-    class="bg-green-500 hover:bg-green-400 transition ease font-bold py-2 px-4 rounded"
+
+<div class="m-5">
+  <p-card
+    header="{{
+      'god-admin.todayMeetings' | translate : { count: bilerak.length }
+    }}"
+    class="shadow-lg rounded-lg"
   >
-    <i class="pi pi-plus mr-1"></i>
-    {{ 'god-admin.addUser' | translate }}
-  </button>
-</div>
-<div class="m-5">
-  <h3 class="text-3xl mb-3 font-bold text-center">{{ 'god-admin.allStudents' | translate }}</h3>
-  <h5 class="text-center">{{ 'god-admin.totalStudents' | translate: { count: ikasleak.length } }}</h5>
-  <div class="grid grid-cols-3 gap-4 ml-5 mt-2" *ngIf="ikasleak.length > 0">
-    <ng-container *ngFor="let ikasle of ikasleak">
-      <app-ikasle-irakasle-card
-        [ikasleIrakasle]="ikasle"
-      ></app-ikasle-irakasle-card>
-    </ng-container>
-  </div>
-</div>
-
-<p-divider type="solid" />
-
-<div class="m-5">
-  <h3 class="text-3xl mb-3 font-bold text-center">{{ 'god-admin.allTeachers' | translate }}</h3>
-  <h5 class="text-center mb-3">
-    {{ 'god-admin.totalTeachers' | translate: { count: irakasleak.length } }}
-  </h5>
-  <div class="grid grid-cols-3 gap-4 ml-5 mt-2" *ngIf="irakasleak.length > 0">
-    <ng-container *ngFor="let irakasle of irakasleak">
-      <app-ikasle-irakasle-card
-        [ikasleIrakasle]="irakasle"
-      ></app-ikasle-irakasle-card>
-    </ng-container>
-  </div>
-</div>
-
-<p-divider type="solid" />
-<div class="m-5">
-  <p-card header="{{ 'god-admin.todayMeetings' | translate: { count: bilerak.length } }}" class="shadow-lg rounded-lg">
     <!-- BILERAK -->
     <div *ngIf="bilerak.length === 0">
-      <p class="m-6 text-center">{{ 'god-admin.noMeetingsToday' | translate }}</p>
+      <p class="m-6 text-center">
+        {{ "god-admin.noMeetingsToday" | translate }}
+      </p>
     </div>
-    <div class="grid grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
       <div *ngFor="let bilera of bilerak" class="mb-4">
         <app-bilerak-card [bilera]="bilera"></app-bilerak-card>
       </div>

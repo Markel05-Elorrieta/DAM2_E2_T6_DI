@@ -46,7 +46,9 @@
     "allTeachers": "Irakasle guztiak",
     "totalTeachers": "Guztira {{count}} irakasle daude",
     "todayMeetings": "Gaurko bilerak ({{count}})",
-    "noMeetingsToday": "Ez daude bilerarik gaurkorako!"
+    "noMeetingsToday": "Ez daude bilerarik gaurkorako!",
+    "allAdmins": "Administratzaile guztiak",
+    "totalAdmins": "Guztira {{count}} administratzaile daude"
   },
   "editatu-gehitu": {
     "backToDashboard": "Itzuli aginte-panelera",
@@ -100,6 +102,7 @@
     "phone1": "Telefonoa 1",
     "phone2": "Telefonoa 2",
     "dni": "NAN",
+    "email": "E-posta",
     "schedule": "Ordutegia",
     "noSchedule": "Ez dago ordutegirik eskuragarri.",
     "monday": "Astelehena",

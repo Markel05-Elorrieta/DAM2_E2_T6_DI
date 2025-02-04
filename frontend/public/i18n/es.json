@@ -46,7 +46,9 @@
     "allTeachers": "Todos los profesores",
     "totalTeachers": "En total hay {{count}} profesores",
     "todayMeetings": "Reuniones de hoy ({{count}})",
-    "noMeetingsToday": "¡No hay reuniones para hoy!"
+    "noMeetingsToday": "¡No hay reuniones para hoy!",
+    "allAdmins": "Todos los administradores",
+    "totalAdmins": "En total hay {{count}} administradores"
   },
   "editatu-gehitu": {
     "backToDashboard": "Volver a la dashboard",
@@ -100,6 +102,7 @@
     "phone1": "Teléfono 1",
     "phone2": "Teléfono 2",
     "dni": "DNI",
+    "email": "Correo electrónico",
     "schedule": "Horario",
     "noSchedule": "No hay horario disponible.",
     "monday": "Lunes",

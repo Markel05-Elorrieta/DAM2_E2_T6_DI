@@ -130,7 +130,6 @@ export class BilerakComponent {
 
   addMarkerBilera() {
     if (this.ikastetxea) {
-      console.log(this.ikastetxea);
       this.map.setCenter([this.ikastetxea.LATITUD, this.ikastetxea.LONGITUD]);
       this.map.setZoom(11);
       new mapboxgl.Marker()
@@ -150,7 +149,7 @@ export class BilerakComponent {
         )
         .addTo(this.map);
     } else {
-      console.log('Ikastetxea is undefined');
+      console.log('Error loading ikastetxea info!');
     }
   }
 }

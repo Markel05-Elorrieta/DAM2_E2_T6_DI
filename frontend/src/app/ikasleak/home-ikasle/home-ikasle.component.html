@@ -1,18 +1,18 @@
 <div class="mr-5 mt-4">
-  <h1 class="text-5xl font-bold text-center">{{ 'home-ikasle.studentSpace' | translate }}</h1>
+  <h1 class="text-3xl md:text-5xl font-bold text-center">{{ 'home-ikasle.studentSpace' | translate }}</h1>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 p-6">
   <!-- User Data Section -->
   <div class="col-span-1">
     <p-card [header]="'home-ikasle.studentData' | translate" class="shadow-lg rounded-lg">
-      <div class="flex items-center p-6">
+      <div class="flex flex-col md:flex-row items-center p-6">
         <img
           [src]="user?.argazkia | photosPipe"
           alt="User Photo"
-          class="rounded-full w-24 h-24 shadow-md mr-6"
+          class="rounded-full w-24 h-24 shadow-md mb-4 md:mb-0 md:mr-6"
         />
-        <div>
-          <p class="font-bold text-5xl mb-5">
+        <div class="text-center md:text-left">
+          <p class="font-bold text-3xl md:text-5xl mb-2 md:mb-5">
             {{ user?.nombre }} {{ user?.apellidos }}
           </p>
           <p class="text-gray-400 text-lg">E-mail: {{ user?.email }}</p>
@@ -20,7 +20,7 @@
       </div>
       <p-divider type="solid" />
       <div class="p-6 space-y-4">
-        <h1 class="text-2xl font-bold text-center">{{ 'home-ikasle.personalInfo' | translate }}</h1>
+        <h1 class="text-xl md:text-2xl font-bold text-center">{{ 'home-ikasle.personalInfo' | translate }}</h1>
         <p class="text-lg"><span class="font-semibold">{{ 'home-ikasle.address' | translate }}:</span> {{ user?.direccion }}</p>
         <p class="text-lg"><span class="font-semibold">{{ 'home-ikasle.phone1' | translate }}:</span> {{ user?.telefono1 }}</p>
         <p *ngIf="user?.telefono2" class="text-lg"><span class="font-semibold">{{ 'home-ikasle.phone2' | translate }}:</span> {{ user?.telefono2 }}</p>
@@ -32,9 +32,8 @@
   <!-- Schedule Section -->
   <div class="col-span-1">
     <p-card [header]="'home-ikasle.schedule' | translate" class="shadow-lg rounded-lg">
-      @if (!schedule) {
-      <p class="mt-3 text-center">{{ 'home-ikasle.noSchedule' | translate }}</p>
-      } @else {     
+      <div *ngIf="!schedule" class="mt-3 text-center">{{ 'home-ikasle.noSchedule' | translate }}</div>
+      <div *ngIf="schedule">
         <p-table showGridlines [value]="[schedule]" class="p-1">
           <ng-template pTemplate="header">
             <tr>
@@ -57,7 +56,7 @@
             </tr>
           </ng-template>
         </p-table>
-      }
+      </div>
     </p-card>
   </div>
 </div>
@@ -70,7 +69,7 @@
     <div *ngIf="bilerak.length === 0">
       <p class="m-6 text-center">{{ 'home-ikasle.noMeetings' | translate: { name: user?.nombre } }}</p>
     </div>
-    <div class="grid grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 ml-5 mt-2" *ngIf="bilerak.length > 0">
       <div *ngFor="let bilera of bilerak" class="mb-4">
         <app-bilerak-card [bilera]="bilera"></app-bilerak-card>
       </div>

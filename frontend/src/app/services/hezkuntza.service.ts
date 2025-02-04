@@ -24,6 +24,10 @@ export class HezkuntzaService {
     return this.httpClient.get<IUser[]>(environment.APIUrl + '/teachers');
   }
 
+  getAllAdmins(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(environment.APIUrl + '/god-admins');
+  }
+
   getIkasleOrdutegia(userId: number): Observable<IOrdutegia> {
     return this.httpClient.get<IOrdutegia>(
       environment.APIUrl + '/timetable-ikasle/' + userId
