@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { IUser } from '../../../interfaces/IUser';
 import { PhotosPipe } from '../../../pipes/photos.pipe';
@@ -13,7 +14,7 @@ import { TooltipModule } from 'primeng/tooltip';
 @Component({
   selector: 'app-ikasle-irakasle-card',
   standalone: true,
-  imports: [CardModule, PhotosPipe, ButtonModule, ConfirmDialogModule, TranslateModule, TooltipModule],
+  imports: [CardModule, PhotosPipe, ButtonModule, ConfirmDialogModule, TranslateModule, TooltipModule, CommonModule],
   templateUrl: './ikasle-irakasle-card.component.html',
   styleUrl: './ikasle-irakasle-card.component.css',
   providers: [MessageService, ConfirmationService],
@@ -76,7 +77,7 @@ export class IkasleIrakasleCardComponent {
     }
   }
 
-  confirmDeleteUser(id: number | undefined) {
+  confirmDeleteUser(ikasleIrakasle: IUser | undefined) {
     this.confirmationService.confirm({
       message: this.translateService.instant('ikasle-irakasle.message'),
       header: this.translateService.instant('ikasle-irakasle.header') + ' ' + this.ikasleIrakasle?.username,
@@ -90,7 +91,7 @@ export class IkasleIrakasleCardComponent {
         outlined: true,
       },
       accept: () => {
-        this.deleteUser(id);
+        this.deleteUser(ikasleIrakasle?.id);
       },
     });
   }
